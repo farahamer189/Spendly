@@ -1,0 +1,1132 @@
+/* =========================
+   General
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Original Surfer", cursive;
+    background: #f8f7f4;
+    color: #2f3437;
+}
+
+
+/* =========================
+   Main Container
+========================= */
+
+.daily-container {
+    width: min(1100px, 90%);
+    margin: 0 auto;
+    padding: 60px 0;
+}
+
+
+/* =========================
+   Page Header
+========================= */
+
+.daily-header {
+    margin-bottom: 35px;
+}
+
+.page-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    opacity: 0.65;
+}
+
+.daily-header h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.page-subtitle {
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+
+/* =========================
+   Daily Summary
+========================= */
+
+.daily-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.daily-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.daily-card p {
+    font-size: 14px;
+    opacity: 0.65;
+    margin-bottom: 10px;
+}
+
+.daily-card h2 {
+    font-size: 27px;
+}
+
+
+/* =========================
+   Budget Button
+========================= */
+
+.budget-section {
+    margin-bottom: 25px;
+}
+
+.budget-btn {
+    border: none;
+    background: #2f3437;
+    color: white;
+    padding: 13px 22px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.budget-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   Daily Message
+========================= */
+
+.daily-message {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: #fff8df;
+    border-radius: 16px;
+    padding: 16px 20px;
+
+    margin-bottom: 40px;
+}
+
+.message-icon {
+    font-size: 23px;
+}
+
+.daily-message p {
+    font-size: 14px;
+}
+
+
+/* =========================
+   Today's Spending
+========================= */
+
+.today-spending-section {
+    background: white;
+    border-radius: 24px;
+    padding: 30px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.section-header h2 {
+    font-size: 25px;
+}
+
+
+/* =========================
+   Add Spending Button
+========================= */
+
+.add-spending-btn {
+    border: none;
+    background: #2f3437;
+    color: white;
+
+    padding: 13px 20px;
+    border-radius: 12px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.add-spending-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   Spending Card
+========================= */
+
+.spending-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 0;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+.spending-card:last-child {
+    border-bottom: none;
+}
+
+.spending-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.spending-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f3f3f3;
+    border-radius: 13px;
+
+    font-size: 21px;
+}
+
+.spending-info h3 {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.spending-info p {
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+.spending-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.spending-amount {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   Spending Actions
+========================= */
+
+.spending-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.edit-spending-btn,
+.delete-spending-btn {
+    border: none;
+    background: #f3f3f3;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.edit-spending-btn:hover,
+.delete-spending-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   Empty Spending State
+========================= */
+
+.empty-spending {
+    text-align: center;
+    padding: 45px 20px;
+    opacity: 0.65;
+}
+
+.empty-spending span {
+    display: block;
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.empty-spending p {
+    font-size: 15px;
+}
+
+
+/* =========================
+   Modals
+========================= */
+
+.spending-modal,
+.budget-modal {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    padding: 20px;
+
+    z-index: 1000;
+}
+
+.spending-modal.show,
+.budget-modal.show {
+    display: flex;
+}
+
+
+/* =========================
+   Modal Content
+========================= */
+
+.spending-modal-content,
+.budget-modal-content {
+    width: min(500px, 100%);
+
+    background: white;
+    border-radius: 22px;
+
+    padding: 30px;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================
+   Modal Header
+========================= */
+
+.modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.modal-header h2 {
+    font-size: 25px;
+}
+
+.close-modal,
+.close-budget-modal {
+    border: none;
+    background: #f3f3f3;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    font-size: 23px;
+    cursor: pointer;
+}
+
+
+/* =========================
+   Form
+========================= */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    border: 1px solid #dddddd;
+    border-radius: 12px;
+
+    padding: 13px 14px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #999999;
+}
+
+
+/* =========================
+   Modal Actions
+========================= */
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+.cancel-btn,
+.save-spending-btn,
+.save-budget-btn {
+    border: none;
+
+    padding: 12px 20px;
+    border-radius: 11px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background: #eeeeee;
+    color: #333;
+}
+
+.save-spending-btn,
+.save-budget-btn {
+    background: #2f3437;
+    color: white;
+}
+
+
+
+
+
+/* =========================
+   Delete Confirmation Modal
+========================= */
+
+.delete-modal {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    padding: 20px;
+
+    z-index: 2000;
+}
+
+.delete-modal.show {
+    display: flex;
+}
+
+
+/* =========================
+   Delete Modal Content
+========================= */
+
+.delete-modal-content {
+    width: min(430px, 100%);
+
+    background: #fff;
+
+    border-radius: 24px;
+
+    padding: 32px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.16);
+
+    animation: deleteModalAppear 0.25s ease;
+}
+
+
+@keyframes deleteModalAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================
+   Delete Icon
+========================= */
+
+.delete-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 18px;
+
+    background: #fff1f0;
+
+    border-radius: 18px;
+
+    font-size: 27px;
+}
+
+
+/* =========================
+   Delete Text
+========================= */
+
+.delete-text h2 {
+    font-size: 24px;
+
+    margin-bottom: 10px;
+}
+
+
+.delete-text p {
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    color: #777;
+
+    max-width: 320px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================
+   Delete Actions
+========================= */
+
+.delete-actions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+
+.delete-cancel-btn,
+.delete-confirm-btn {
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 11px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.delete-cancel-btn {
+    background: #eeeeee;
+
+    color: #333;
+}
+
+
+.delete-confirm-btn {
+    background: #2f3437;
+
+    color: white;
+}
+
+
+.delete-cancel-btn:hover,
+.delete-confirm-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   Success Toast
+========================= */
+
+.success-toast {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%) scale(0.9);
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: white;
+
+    padding: 18px 25px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+
+    z-index: 9999;
+}
+
+.success-toast.show {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.success-toast span {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e8f5e9;
+    color: #3f7d4a;
+
+    border-radius: 50%;
+
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.success-toast p {
+    font-size: 15px;
+    color: #2f3437;
+}
+
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 750px) {
+
+    .daily-container {
+        width: 92%;
+        padding: 35px 0;
+    }
+
+    .daily-header h1 {
+        font-size: 32px;
+    }
+
+    .daily-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header {
+        align-items: flex-start;
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .add-spending-btn {
+        width: 100%;
+    }
+
+    .today-spending-section {
+        padding: 22px;
+    }
+
+    .spending-card {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .spending-right {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
+    }
+
+    .spending-amount {
+        white-space: nowrap;
+    }
+
+}
+
+
+/* =========================
+   Theme Lamp
+========================= */
+
+.theme-lamp {
+    position: fixed;
+    top: 0;
+    right: 25px;
+    z-index: 9999;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    user-select: none;
+}
+
+/* Small Lamp */
+
+.lamp {
+    position: relative;
+    width: 42px;
+    height: 34px;
+}
+
+.lamp-shade {
+    width: 42px;
+    height: 23px;
+
+    background: #f5c96b;
+
+    border-radius: 5px 5px 22px 22px;
+
+    box-shadow:
+        0 3px 10px rgba(245, 201, 107, 0.3);
+
+    transition: 0.4s ease;
+}
+
+.lamp-light {
+    position: absolute;
+
+    width: 28px;
+    height: 16px;
+
+    left: 50%;
+    bottom: -8px;
+
+    transform: translateX(-50%);
+
+    background: #fff4c7;
+
+    border-radius: 50%;
+
+    opacity: 1;
+
+    filter: blur(4px);
+
+    transition: 0.4s ease;
+}
+
+
+/* =========================
+   Lamp Cord
+========================= */
+
+.lamp-cord {
+    width: 2px;
+    height: 55px;
+
+    background: #555;
+
+    position: relative;
+
+    cursor: grab;
+
+    transform-origin: top center;
+
+    transition: height 0.25s ease;
+}
+
+
+/* Cord Handle */
+
+.cord-handle {
+    position: absolute;
+
+    width: 12px;
+    height: 17px;
+
+    bottom: -12px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #444;
+
+    border-radius: 50% 50% 45% 45%;
+
+    cursor: grab;
+}
+
+
+/* Pull Animation */
+
+.theme-lamp.pulling .lamp-cord {
+    height: 70px;
+}
+
+.theme-lamp.pulling .cord-handle {
+    transform: translateX(-50%) scale(1.05);
+}
+
+
+/* =========================
+   Night Mode
+========================= */
+
+body.night-mode {
+    background: #171923;
+    color: #eee8dc;
+}
+
+
+/* =========================
+   Daily Summary Cards
+========================= */
+
+body.night-mode .daily-card {
+    background: #242630;
+    color: #eee8dc;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+body.night-mode .daily-card p {
+    color: #c8c2b8;
+}
+
+body.night-mode .daily-card h2 {
+    color: #f5cfa3;
+}
+
+
+/* =========================
+   Today's Spending
+========================= */
+
+body.night-mode .today-spending-section {
+    background: #242630;
+    color: #eee8dc;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+body.night-mode .section-header h2 {
+    color: #f5cfa3;
+}
+
+
+/* =========================
+   Spending Cards
+========================= */
+
+body.night-mode .spending-card {
+    border-bottom-color: #3a3d47;
+}
+
+body.night-mode .spending-info h3 {
+    color: #eee8dc;
+}
+
+body.night-mode .spending-info p {
+    color: #aaa69e;
+}
+
+body.night-mode .spending-amount {
+    color: #f5cfa3;
+}
+
+
+/* Spending Icon */
+
+body.night-mode .spending-icon {
+    background: #30333d;
+}
+
+
+/* Edit / Delete Buttons */
+
+body.night-mode .edit-spending-btn,
+body.night-mode .delete-spending-btn {
+    background: #30333d;
+    color: #eee8dc;
+}
+
+
+/* =========================
+   Daily Message
+========================= */
+
+body.night-mode .daily-message {
+    background: #302d25;
+    color: #eee8dc;
+}
+
+body.night-mode .daily-message p {
+    color: #ddd6ca;
+}
+
+
+/* =========================
+   Header
+========================= */
+
+body.night-mode .page-label {
+    color: #c8c2b8;
+}
+
+body.night-mode .daily-header h1 {
+    color: #f5cfa3;
+}
+
+body.night-mode .page-subtitle {
+    color: #c8c2b8;
+}
+
+
+/* =========================
+   Buttons
+========================= */
+
+body.night-mode .budget-btn,
+body.night-mode .add-spending-btn,
+body.night-mode .save-spending-btn,
+body.night-mode .save-budget-btn,
+body.night-mode .delete-confirm-btn {
+    background: #f5cfa3;
+    color: #242630;
+}
+
+body.night-mode .budget-btn:hover,
+body.night-mode .add-spending-btn:hover,
+body.night-mode .save-spending-btn:hover,
+body.night-mode .save-budget-btn:hover,
+body.night-mode .delete-confirm-btn:hover {
+    background: #e8bb86;
+}
+
+
+/* =========================
+   Empty State
+========================= */
+
+body.night-mode .empty-spending {
+    color: #c8c2b8;
+}
+
+
+/* =========================
+   Modals
+========================= */
+
+body.night-mode .spending-modal-content,
+body.night-mode .budget-modal-content,
+body.night-mode .delete-modal-content {
+    background: #242630;
+    color: #eee8dc;
+}
+
+body.night-mode .modal-header h2 {
+    color: #f5cfa3;
+}
+
+body.night-mode .close-modal,
+body.night-mode .close-budget-modal {
+    background: #30333d;
+    color: #eee8dc;
+}
+
+
+/* =========================
+   Form
+========================= */
+
+body.night-mode .form-group label {
+    color: #eee8dc;
+}
+
+body.night-mode .form-group input,
+body.night-mode .form-group select {
+    background: #30333d;
+    color: #eee8dc;
+    border-color: #474a55;
+}
+
+body.night-mode .form-group input::placeholder {
+    color: #918d86;
+}
+
+
+/* =========================
+   Cancel Buttons
+========================= */
+
+body.night-mode .cancel-btn,
+body.night-mode .delete-cancel-btn {
+    background: #353842;
+    color: #eee8dc;
+}
+
+
+/* =========================
+   Delete Modal
+========================= */
+
+body.night-mode .delete-icon {
+    background: #3a2928;
+}
+
+body.night-mode .delete-text h2 {
+    color: #f5cfa3;
+}
+
+body.night-mode .delete-text p {
+    color: #bcb6ad;
+}
+
+
+/* =========================
+   Success Toast
+========================= */
+
+body.night-mode .success-toast {
+    background: #242630;
+    color: #eee8dc;
+}
+
+body.night-mode .success-toast p {
+    color: #eee8dc;
+}
+
+body.night-mode .success-toast span {
+    background: #304335;
+    color: #9dd5a7;
+}
+
+
+/* =========================
+   Lamp - Night
+========================= */
+
+body.night-mode .lamp-shade {
+    background: #555968;
+    box-shadow: none;
+}
+
+body.night-mode .lamp-light {
+    opacity: 0;
+}
+
+
+/* =========================
+   Smooth Transition
+========================= */
+
+body,
+.daily-card,
+.today-spending-section,
+.spending-card,
+.spending-icon,
+.edit-spending-btn,
+.delete-spending-btn,
+.daily-message,
+.spending-modal-content,
+.budget-modal-content,
+.delete-modal-content,
+.success-toast,
+.lamp-shade,
+.lamp-light {
+    transition:
+        background 0.5s ease,
+        color 0.5s ease,
+        border-color 0.5s ease,
+        box-shadow 0.5s ease;
+}

@@ -1,0 +1,349 @@
+/* =========================
+   Theme Lamp
+========================= */
+
+.theme-lamp {
+    position: fixed;
+    top: 0;
+    right: 25px;
+    z-index: 9999;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    user-select: none;
+}
+
+.lamp {
+    position: relative;
+    width: 42px;
+    height: 34px;
+}
+
+.lamp-shade {
+    width: 42px;
+    height: 23px;
+
+    background: #f5c96b;
+
+    border-radius: 5px 5px 22px 22px;
+
+    box-shadow:
+        0 3px 10px rgba(245, 201, 107, 0.3);
+
+    transition: 0.4s ease;
+}
+
+.lamp-light {
+    position: absolute;
+
+    width: 28px;
+    height: 16px;
+
+    left: 50%;
+    bottom: -8px;
+
+    transform: translateX(-50%);
+
+    background: #fff4c7;
+
+    border-radius: 50%;
+
+    opacity: 1;
+
+    filter: blur(4px);
+
+    transition: 0.4s ease;
+}
+
+
+/* =========================
+   Lamp Cord
+========================= */
+
+.lamp-cord {
+    width: 2px;
+    height: 55px;
+
+    background: #555;
+
+    position: relative;
+
+    cursor: grab;
+
+    transform-origin: top center;
+
+    transition: height 0.25s ease;
+}
+
+.cord-handle {
+    position: absolute;
+
+    width: 12px;
+    height: 17px;
+
+    bottom: -12px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #444;
+
+    border-radius: 50% 50% 45% 45%;
+
+    cursor: grab;
+}
+
+
+/* =========================
+   Pull Animation
+========================= */
+
+.theme-lamp.pulling .lamp-cord {
+    height: 70px;
+}
+
+.theme-lamp.pulling .cord-handle {
+    transform: translateX(-50%) scale(1.05);
+}
+
+
+/* =========================
+   Night Mode
+========================= */
+
+body.night-mode {
+    background: #171923;
+    color: #eee8dc;
+}
+
+
+/* Daily Cards */
+
+body.night-mode .daily-card {
+    background: #242630;
+    color: #eee8dc;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+body.night-mode .daily-card p {
+    color: #c8c2b8;
+}
+
+body.night-mode .daily-card h2 {
+    color: #f5cfa3;
+}
+
+
+/* Today's Spending */
+
+body.night-mode .today-spending-section {
+    background: #242630;
+    color: #eee8dc;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+body.night-mode .section-header h2 {
+    color: #f5cfa3;
+}
+
+
+/* Spending Cards */
+
+body.night-mode .spending-card {
+    border-bottom-color: #3a3d47;
+}
+
+body.night-mode .spending-info h3 {
+    color: #eee8dc;
+}
+
+body.night-mode .spending-info p {
+    color: #aaa69e;
+}
+
+body.night-mode .spending-amount {
+    color: #f5cfa3;
+}
+
+
+/* Spending Icon */
+
+body.night-mode .spending-icon {
+    background: #30333d;
+}
+
+
+/* Edit / Delete */
+
+body.night-mode .edit-spending-btn,
+body.night-mode .delete-spending-btn {
+    background: #30333d;
+    color: #eee8dc;
+}
+
+
+/* Daily Message */
+
+body.night-mode .daily-message {
+    background: #302d25;
+    color: #eee8dc;
+}
+
+body.night-mode .daily-message p {
+    color: #ddd6ca;
+}
+
+
+/* Header */
+
+body.night-mode .page-label {
+    color: #c8c2b8;
+}
+
+body.night-mode .daily-header h1 {
+    color: #f5cfa3;
+}
+
+body.night-mode .page-subtitle {
+    color: #c8c2b8;
+}
+
+
+/* Buttons */
+
+body.night-mode .budget-btn,
+body.night-mode .add-spending-btn,
+body.night-mode .save-spending-btn,
+body.night-mode .save-budget-btn,
+body.night-mode .delete-confirm-btn {
+    background: #f5cfa3;
+    color: #242630;
+}
+
+
+/* Empty State */
+
+body.night-mode .empty-spending {
+    color: #c8c2b8;
+}
+
+
+/* Modals */
+
+body.night-mode .spending-modal-content,
+body.night-mode .budget-modal-content,
+body.night-mode .delete-modal-content {
+    background: #242630;
+    color: #eee8dc;
+}
+
+body.night-mode .modal-header h2 {
+    color: #f5cfa3;
+}
+
+body.night-mode .close-modal,
+body.night-mode .close-budget-modal {
+    background: #30333d;
+    color: #eee8dc;
+}
+
+
+/* Form */
+
+body.night-mode .form-group label {
+    color: #eee8dc;
+}
+
+body.night-mode .form-group input,
+body.night-mode .form-group select {
+    background: #30333d;
+    color: #eee8dc;
+    border-color: #474a55;
+}
+
+body.night-mode .form-group input::placeholder {
+    color: #918d86;
+}
+
+
+/* Cancel Buttons */
+
+body.night-mode .cancel-btn,
+body.night-mode .delete-cancel-btn {
+    background: #353842;
+    color: #eee8dc;
+}
+
+
+/* Delete Modal */
+
+body.night-mode .delete-icon {
+    background: #3a2928;
+}
+
+body.night-mode .delete-text h2 {
+    color: #f5cfa3;
+}
+
+body.night-mode .delete-text p {
+    color: #bcb6ad;
+}
+
+
+/* Success Toast */
+
+body.night-mode .success-toast {
+    background: #242630;
+    color: #eee8dc;
+}
+
+body.night-mode .success-toast p {
+    color: #eee8dc;
+}
+
+body.night-mode .success-toast span {
+    background: #304335;
+    color: #9dd5a7;
+}
+
+
+/* Lamp - Night */
+
+body.night-mode .lamp-shade {
+    background: #555968;
+    box-shadow: none;
+}
+
+body.night-mode .lamp-light {
+    opacity: 0;
+}
+
+
+/* Smooth Transition */
+
+body,
+.daily-card,
+.today-spending-section,
+.spending-card,
+.spending-icon,
+.edit-spending-btn,
+.delete-spending-btn,
+.daily-message,
+.spending-modal-content,
+.budget-modal-content,
+.delete-modal-content,
+.success-toast,
+.lamp-shade,
+.lamp-light {
+    transition:
+        background 0.5s ease,
+        color 0.5s ease,
+        border-color 0.5s ease,
+        box-shadow 0.5s ease;
+}

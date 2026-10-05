@@ -7,172 +7,436 @@
 
     <title>Dashboard | Spendly</title>
 
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Dashboard CSS -->
+   <link rel="stylesheet" href="../css/dashboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 </head>
+
 
 <body>
 
-    <header class="dashboard-header">
-        <div class="logo">
-            Spendly 💜
-        </div>
-
-        <div class="user-greeting">
-            👋 Hi there!
-        </div>
-    </header>
+    <main class="dashboard-container">
 
 
+        <!-- ============================= -->
+        <!-- Dashboard Header -->
+        <!-- ============================= -->
 
-    <section class="dashboard-intro">
-    <h1>Good morning! ☀️</h1>
-    <p>Ready to see where your money went?</p>
-</section>
+        <section class="dashboard-header">
 
-<section class="summary-cards">
+            <div class="welcome-section">
 
-    <div class="summary-card">
-        <span class="card-icon">💰</span>
-        <p>Total Balance</p>
-        <h2>8,540 EGP</h2>
-    </div>
+                <p class="dashboard-label">YOUR DASHBOARD</p>
 
-    <div class="summary-card">
-        <span class="card-icon">💵</span>
-        <p>Income</p>
-        <h2>12,500 EGP</h2>
-    </div>
+                <h1>Welcome back 👋</h1>
 
-    <div class="summary-card">
-        <span class="card-icon">💸</span>
-        <p>Expenses</p>
-        <h2>3,960 EGP</h2>
-    </div>
+                <p class="dashboard-subtitle">
+                    Here's an overview of your finances.
+                </p>
 
-    <div class="summary-card">
-        <span class="card-icon">🎯</span>
-        <p>Today's Budget</p>
-        <h2>1,000 EGP</h2>
-    </div>
-
-</section>
-
-
-
-<section class="recent-expenses">
-
-    <div class="section-header">
-        <h2>Recent Expenses 🧾</h2>
-        <a href="expenses.html">View all</a>
-    </div>
-
-    <div class="expense-list">
-
-        <div class="expense-item">
-            <div class="expense-info">
-                <span class="expense-icon">🍔</span>
-                <div>
-                    <h3>Lunch</h3>
-                    <p>Today · 2:30 PM</p>
-                </div>
             </div>
 
-            <span class="expense-amount">-250 EGP</span>
-        </div>
 
-        <div class="expense-item">
-            <div class="expense-info">
-                <span class="expense-icon">🚕</span>
-                <div>
-                    <h3>Uber</h3>
-                    <p>Today · 11:15 AM</p>
+            <!-- Period Selector -->
+
+            <div class="period-section">
+
+                <p class="period-label">
+                    This Month · Sep 2026
+                </p>
+
+                <div class="period-selector">
+
+                    <button>Today</button>
+
+                    <button>This Week</button>
+
+                    <button class="active">This Month</button>
+
                 </div>
+
             </div>
 
-            <span class="expense-amount">-120 EGP</span>
-        </div>
+        </section>
 
-        <div class="expense-item">
-            <div class="expense-info">
-                <span class="expense-icon">🛍️</span>
-                <div>
-                    <h3>Shopping</h3>
-                    <p>Yesterday · 6:45 PM</p>
-                </div>
+
+
+        <!-- ============================= -->
+        <!-- Summary Cards -->
+        <!-- ============================= -->
+
+        <section class="summary-section">
+
+            <div class="summary-card">
+
+                <p class="summary-title">Total Balance</p>
+
+                <h2>$8,540.00</h2>
+
+                <span class="summary-note">
+                    Available balance
+                </span>
+
             </div>
 
-            <span class="expense-amount">-500 EGP</span>
-        </div>
 
-    </div>
+            <div class="summary-card">
 
-</section>
+                <p class="summary-title">Income</p>
+
+                <h2>$12,500.00</h2>
+
+                <span class="summary-note">
+                    Money received
+                </span>
+
+            </div>
 
 
+            <div class="summary-card">
+
+                <p class="summary-title">Expenses</p>
+
+                <h2>$3,960.00</h2>
+
+                <span class="summary-note">
+                    Money spent
+                </span>
+
+            </div>
 
 
+            <div class="summary-card">
 
+                <p class="summary-title">Remaining Budget</p>
 
+                <h2>$2,040.00</h2>
 
+                <span class="summary-note">
+                    Left to spend
+                </span>
 
-<section class="quick-actions">
+            </div>
 
-    <h2>What do you want to do? 👀</h2>
-
-    <div class="action-grid">
-
-        <a href="expenses.html" class="action-card">
-            <span>💸</span>
-            <h3>Add Expense</h3>
-            <p>Track what you spent</p>
-        </a>
-
-        <a href="budget.html" class="action-card">
-            <span>🎯</span>
-            <h3>My Budget</h3>
-            <p>Keep your spending in check</p>
-        </a>
-
-        <a href="lists.html" class="action-card">
-            <span>📝</span>
-            <h3>My Lists</h3>
-            <p>Don't forget the little things</p>
-        </a>
-
-        <a href="reports.html" class="action-card">
-            <span>📊</span>
-            <h3>Reports</h3>
-            <p>Understand your spending</p>
-        </a>
-
-    </div>
-
-</section>
+        </section>
 
 
 
+        <!-- ============================= -->
+        <!-- Budget Progress -->
+        <!-- ============================= -->
+
+        <section class="budget-section">
+
+            <div class="budget-header">
+
+                <div>
+
+                    <p class="dashboard-label">
+                        BUDGET
+                    </p>
+
+                    <h2>Today's Budget</h2>
+
+                </div>
+
+
+                <span class="budget-amount">
+                    750 / 1,000 EGP
+                </span>
+
+            </div>
+
+
+            <div class="budget-progress">
+
+                <div class="budget-progress-bar"></div>
+
+            </div>
+
+
+            <div class="budget-footer">
+
+                <span>
+                    750 EGP spent
+                </span>
+
+                <span>
+                    250 EGP remaining
+                </span>
+
+            </div>
+
+        </section>
 
 
 
+        <!-- ============================= -->
+        <!-- Spending Overview -->
+        <!-- ============================= -->
+
+        <section class="spending-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <p class="dashboard-label">
+                        SPENDING
+                    </p>
+
+                    <h2>Where your money goes</h2>
+
+                </div>
+
+
+                <a href="reports.html">
+                    View reports
+                </a>
+
+            </div>
+
+
+            <div class="spending-content">
+
+
+                <!-- Chart -->
+
+                <div class="chart-container">
+    <canvas id="spendingChart"></canvas>
+</div>
 
 
 
+                <!-- Spending Categories -->
+
+                <div class="spending-categories">
+
+
+                    <div class="category-item">
+
+                        <div class="category-info">
+
+                            <span class="category-icon">
+                                🍔
+                            </span>
+
+                            <div>
+
+                                <h3>Food</h3>
+
+                                <p>
+                                    35% of spending
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <strong>
+                            1,232 EGP
+                        </strong>
+
+                    </div>
 
 
 
+                    <div class="category-item">
+
+                        <div class="category-info">
+
+                            <span class="category-icon">
+                                🚕
+                            </span>
+
+                            <div>
+
+                                <h3>Transportation</h3>
+
+                                <p>
+                                    20% of spending
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <strong>
+                            704 EGP
+                        </strong>
+
+                    </div>
 
 
 
+                    <div class="category-item">
+
+                        <div class="category-info">
+
+                            <span class="category-icon">
+                                🛒
+                            </span>
+
+                            <div>
+
+                                <h3>Shopping</h3>
+
+                                <p>
+                                    30% of spending
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <strong>
+                            1,056 EGP
+                        </strong>
+
+                    </div>
 
 
 
+                    <div class="category-item">
+
+                        <div class="category-info">
+
+                            <span class="category-icon">
+                                💡
+                            </span>
+
+                            <div>
+
+                                <h3>Bills</h3>
+
+                                <p>
+                                    15% of spending
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <strong>
+                            528 EGP
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
 
 
 
+        <!-- ============================= -->
+        <!-- Quick Actions -->
+        <!-- ============================= -->
+
+        <section class="quick-actions">
+
+            <p class="dashboard-label">
+                QUICK ACTIONS
+            </p>
+
+            <h2>
+                What would you like to do?
+            </h2>
+
+
+            <div class="actions-container">
+
+
+                <a href="expenses.html" class="action-card">
+
+                    <span class="action-icon">
+                        💸
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Add Expense
+                        </h3>
+
+                        <p>
+                            Record a new expense
+                        </p>
+
+                    </div>
+
+                </a>
 
 
 
+                <a href="budget.html" class="action-card">
 
+                    <span class="action-icon">
+                        🎯
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Set Budget
+                        </h3>
+
+                        <p>
+                            Manage your spending limit
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+
+                <a href="lists.html" class="action-card">
+
+                    <span class="action-icon">
+                        🛒
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Create List
+                        </h3>
+
+                        <p>
+                            Make a shopping or to-do list
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+<script src="../js/dashboard.js"></script>
 </body>
 
 </html>
