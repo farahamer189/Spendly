@@ -8,38 +8,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Sign Up | Spendly</title>
-    <link rel="icon" type="image/png" href="../assets/spendly-logo.png">
 
-    <link rel="stylesheet" href="../css/signup.css">
+    <link
+        rel="icon"
+        type="image/png"
+        href="../assets/spendly-logo.png"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/theme.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/signup.css"
+    >
 
 </head>
 
+
 <body>
+
+
+    <!-- =========================
+         Theme Lamp
+    ========================= -->
+
+    <div class="theme-lamp">
+
+        <div class="lamp">
+
+            <div class="lamp-shade"></div>
+
+            <div class="lamp-light"></div>
+
+        </div>
+
+
+        <div
+            class="lamp-cord"
+            id="lamp-cord"
+        >
+
+            <div class="cord-handle"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         Signup Page
+    ========================= -->
 
     <main class="signup-page">
 
+
+        <!-- =========================
+             Signup Card
+        ========================= -->
+
         <section class="signup-container">
+
+
+            <!-- Profile Avatar -->
+
+            <div
+                class="profile-avatar"
+                id="profile-avatar"
+            ></div>
+
+
+            <!-- Mascot -->
 
             <div class="mascot">
                 💰
             </div>
 
-            <h1>Join Spendly!</h1>
 
-            <p class="welcome-text">
+            <!-- Heading -->
+
+            <h1 data-i18n="joinSpendly">
+                Join Spendly!
+            </h1>
+
+
+            <p
+                class="welcome-text"
+                data-i18n="signupWelcome"
+            >
                 Let's get your money life together ✨
             </p>
 
-            <form id="signupForm">
+
+            <!-- =========================
+                 Signup Form
+            ========================= -->
+
+            <form
+                id="signupForm"
+                autocomplete="off"
+                novalidate
+            >
+
+
+                <!-- =========================
+                     Name
+                ========================= -->
 
                 <div class="form-group">
 
-                    <label for="name">Name</label>
+                    <label
+                        for="name"
+                        data-i18n="name"
+                    >
+                        Name
+                    </label>
+
 
                     <input
                         type="text"
                         id="name"
                         name="name"
+                        autocomplete="name"
                         placeholder="What should we call you?"
                         required
                     >
@@ -47,14 +139,25 @@
                 </div>
 
 
+                <!-- =========================
+                     Email
+                ========================= -->
+
                 <div class="form-group">
 
-                    <label for="email">Email</label>
+                    <label
+                        for="email"
+                        data-i18n="email"
+                    >
+                        Email
+                    </label>
+
 
                     <input
                         type="email"
                         id="email"
                         name="email"
+                        autocomplete="email"
                         placeholder="Enter your email"
                         required
                     >
@@ -62,9 +165,19 @@
                 </div>
 
 
+                <!-- =========================
+                     Password
+                ========================= -->
+
                 <div class="form-group">
 
-                    <label for="password">Password</label>
+                    <label
+                        for="password"
+                        data-i18n="password"
+                    >
+                        Password
+                    </label>
+
 
                     <div class="password-box">
 
@@ -73,34 +186,214 @@
                             id="password"
                             name="password"
                             placeholder="Create a password"
+                            autocomplete="new-password"
                             required
                         >
 
-                        <span id="togglePassword">👀</span>
+
+                        <span id="togglePassword">
+                            👀
+                        </span>
+
+                    </div>
+
+
+                    <!-- Password Requirements -->
+
+                    <div
+                        class="password-requirements"
+                        id="password-requirements"
+                    >
+
+                        <p id="length-check">
+                            ❌ At least 8 characters
+                        </p>
+
+                        <p id="uppercase-check">
+                            ❌ One uppercase letter
+                        </p>
+
+                        <p id="lowercase-check">
+                            ❌ One lowercase letter
+                        </p>
+
+                        <p id="number-check">
+                            ❌ One number
+                        </p>
 
                     </div>
 
                 </div>
 
 
-                <button class="signup-button" type="submit">
+                <!-- =========================
+                     Gender
+                ========================= -->
+
+                <div class="form-group">
+
+                    <label data-i18n="gender">
+                        Gender
+                    </label>
+
+
+                    <div class="gender-options">
+
+
+                        <!-- Female -->
+
+                        <label class="gender-option">
+
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="female"
+                            >
+
+                            <span data-i18n="female">
+                                ♀ Female
+                            </span>
+
+                        </label>
+
+
+                        <!-- Male -->
+
+                        <label class="gender-option">
+
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="male"
+                            >
+
+                            <span data-i18n="male">
+                                ♂ Male
+                            </span>
+
+                        </label>
+
+
+                        <!-- Prefer Not To Say -->
+
+                        <label class="gender-option">
+
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="neutral"
+                            >
+
+                            <span data-i18n="preferNotToSay">
+                                ✨ Prefer not to say
+                            </span>
+
+                        </label>
+
+
+                    </div>
+
+
+                    <!-- Gender Validation Message -->
+
+                    <div
+                        class="gender-message"
+                        id="gender-message"
+                    >
+                        ✨ Please choose your gender first.
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     Create Account
+                ========================= -->
+
+                <button
+                    class="signup-button"
+                    type="submit"
+                    data-i18n="createAccount"
+                >
                     Create my account ✨
                 </button>
+
 
             </form>
 
 
+            <!-- =========================
+                 Login
+            ========================= -->
+
             <p class="login-text">
-                Already have an account?
-                <a href="login.html">Log in</a>
+
+                <span data-i18n="alreadyHaveAccount">
+                    Already have an account?
+                </span>
+
+
+                <a
+                    href="login.html"
+                    data-i18n="login"
+                >
+                    Log in
+                </a>
+
             </p>
 
+
         </section>
+
+
+        <!-- =========================
+             Success Overlay
+        ========================= -->
+
+        <div
+            class="success-overlay"
+            id="success-overlay"
+        >
+
+            <div class="success-card">
+
+
+                <div class="success-icon">
+                    🎉
+                </div>
+
+
+                <h2>
+                    Account created!
+                </h2>
+
+
+                <p>
+                    Welcome to Spendly ✨
+                </p>
+
+
+                <div class="success-loader"></div>
+
+
+            </div>
+
+        </div>
+
 
     </main>
 
 
+    <!-- =========================
+         Scripts
+    ========================= -->
+
+    <script src="../js/theme.js"></script>
+
+    <script src="../js/language.js"></script>
+
     <script src="../js/signup.js"></script>
+
 
 </body>
 

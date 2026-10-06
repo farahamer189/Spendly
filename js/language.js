@@ -1,4 +1,3 @@
-
 /* =========================
    Spendly Language
 ========================= */
@@ -18,6 +17,8 @@ const translations = {
     ========================= */
 
     en: {
+
+        /* ===== Daily ===== */
 
         pageLabel: "YOUR DAY",
 
@@ -128,6 +129,48 @@ const translations = {
         usedHalfBudget:
             "You've used 50% of your daily budget. 👀",
 
+
+        /* ===== Signup ===== */
+
+        joinSpendly:
+            "Join Spendly!",
+
+        signupWelcome:
+            "Let's get your money life together ✨",
+
+        name:
+            "Name",
+
+        email:
+            "Email",
+
+        password:
+            "Password",
+
+        gender:
+            "Gender",
+
+        female:
+            "♀ Female",
+
+        male:
+            "♂ Male",
+
+        preferNotToSay:
+            "✨ Prefer not to say",
+
+        createAccount:
+            "Create my account ✨",
+
+        alreadyHaveAccount:
+            "Already have an account?",
+
+        login:
+            "Log in",
+
+
+        /* ===== Categories ===== */
+
         categories: {
 
             Food:
@@ -151,6 +194,7 @@ const translations = {
             Other:
                 "📦 Other"
         }
+
     },
 
 
@@ -159,6 +203,8 @@ const translations = {
     ========================= */
 
     ar: {
+
+        /* ===== Daily ===== */
 
         pageLabel:
             "يومك",
@@ -271,6 +317,48 @@ const translations = {
         usedHalfBudget:
             "لقد استخدمتي 50% من ميزانية اليوم. 👀",
 
+
+        /* ===== Signup ===== */
+
+        joinSpendly:
+            "انضمي إلى Spendly!",
+
+        signupWelcome:
+            "يلا نرتب حياتك المالية مع بعض ✨",
+
+        name:
+            "الاسم",
+
+        email:
+            "البريد الإلكتروني",
+
+        password:
+            "كلمة المرور",
+
+        gender:
+            "النوع",
+
+        female:
+            "♀ بنت",
+
+        male:
+            "♂ ولد",
+
+        preferNotToSay:
+            "✨ أفضل عدم التحديد",
+
+        createAccount:
+            "إنشاء حسابي ✨",
+
+        alreadyHaveAccount:
+            "عندك حساب بالفعل؟",
+
+        login:
+            "تسجيل الدخول",
+
+
+        /* ===== Categories ===== */
+
         categories: {
 
             Food:
@@ -294,7 +382,9 @@ const translations = {
             Other:
                 "📦 أخرى"
         }
+
     }
+
 };
 
 
@@ -308,9 +398,12 @@ function applyLanguage(language) {
         translations[language] || translations.en;
 
 
+    /* =========================
+       Page Direction
+    ========================= */
+
     document.documentElement.lang =
         language;
-
 
     document.documentElement.dir =
         language === "ar"
@@ -319,7 +412,7 @@ function applyLanguage(language) {
 
 
     /* =========================
-       Translate Normal Elements
+       Translate Elements
     ========================= */
 
     const elements =
@@ -335,7 +428,9 @@ function applyLanguage(language) {
                 element.dataset.i18n;
 
 
-            if (selectedLanguage[key]) {
+            if (
+                selectedLanguage[key]
+            ) {
 
                 element.textContent =
                     selectedLanguage[key];
@@ -347,7 +442,7 @@ function applyLanguage(language) {
 
 
     /* =========================
-       Translate Category Options
+       Translate Daily Categories
     ========================= */
 
     const categorySelect =
@@ -389,7 +484,7 @@ function applyLanguage(language) {
 
 
     /* =========================
-       Update Placeholders
+       Daily Placeholders
     ========================= */
 
     const spendingName =
@@ -397,12 +492,10 @@ function applyLanguage(language) {
             "#spending-name"
         );
 
-
     const spendingAmount =
         document.querySelector(
             "#spending-amount"
         );
-
 
     const budgetAmount =
         document.querySelector(
@@ -464,10 +557,85 @@ function applyLanguage(language) {
 
 
     /* =========================
+       Signup Placeholders
+    ========================= */
+
+    const nameInput =
+        document.querySelector(
+            "#name"
+        );
+
+    const emailInput =
+        document.querySelector(
+            "#email"
+        );
+
+    const passwordInput =
+        document.querySelector(
+            "#password"
+        );
+
+
+    if (language === "ar") {
+
+        if (nameInput) {
+
+            nameInput.placeholder =
+                "هنناديك بإيه؟";
+
+        }
+
+
+        if (emailInput) {
+
+            emailInput.placeholder =
+                "اكتبي إيميلك";
+
+        }
+
+
+        if (passwordInput) {
+
+            passwordInput.placeholder =
+                "اعملي كلمة مرور";
+
+        }
+
+    } else {
+
+        if (nameInput) {
+
+            nameInput.placeholder =
+                "What should we call you?";
+
+        }
+
+
+        if (emailInput) {
+
+            emailInput.placeholder =
+                "Enter your email";
+
+        }
+
+
+        if (passwordInput) {
+
+            passwordInput.placeholder =
+                "Create a password";
+
+        }
+
+    }
+
+
+    /* =========================
        Update Language Button
     ========================= */
 
-    updateLanguageButton(language);
+    updateLanguageButton(
+        language
+    );
 
 
     /* =========================
@@ -493,6 +661,16 @@ function applyLanguage(language) {
 
     }
 
+
+    /* =========================
+       Tell Other Scripts
+       Language Changed
+    ========================= */
+
+    window.dispatchEvent(
+        new Event("languageChanged")
+    );
+
 }
 
 
@@ -501,6 +679,19 @@ function applyLanguage(language) {
 ========================= */
 
 function createLanguageButton() {
+
+    /* Prevent duplicate button */
+
+    if (
+        document.querySelector(
+            "#language-toggle"
+        )
+    ) {
+
+        return;
+
+    }
+
 
     const button =
         document.createElement(
@@ -595,10 +786,27 @@ function updateLanguageButton(
 
 function addLanguageStyles() {
 
+    /* Prevent duplicate styles */
+
+    if (
+        document.querySelector(
+            "#spendly-language-styles"
+        )
+    ) {
+
+        return;
+
+    }
+
+
     const style =
         document.createElement(
             "style"
         );
+
+
+    style.id =
+        "spendly-language-styles";
 
 
     style.textContent = `
@@ -638,6 +846,7 @@ function addLanguageStyles() {
             transition:
                 transform 0.2s ease,
                 box-shadow 0.2s ease;
+
         }
 
 
@@ -649,6 +858,7 @@ function addLanguageStyles() {
             box-shadow:
                 0 9px 25px
                 rgba(0, 0, 0, 0.12);
+
         }
 
 
@@ -662,6 +872,7 @@ function addLanguageStyles() {
             box-shadow:
                 0 6px 20px
                 rgba(0, 0, 0, 0.25);
+
         }
 
 
@@ -676,6 +887,7 @@ function addLanguageStyles() {
                 padding: 8px 12px;
 
                 font-size: 12px;
+
             }
 
         }

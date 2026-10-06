@@ -1,6 +1,6 @@
-/* ------------------------------
-   General Page
------------------------------- */
+/* =========================
+   General
+========================= */
 
 * {
     box-sizing: border-box;
@@ -9,16 +9,21 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #f6f3ff, #eee9ff);
+    font-family: "Original Surfer", cursive;
+    background: #f8f7f4;
+    color: #2f3437;
+
     min-height: 100vh;
-    color: #252238;
+
+    transition:
+        background 0.5s ease,
+        color 0.5s ease;
 }
 
 
-/* ------------------------------
+/* =========================
    Signup Page
------------------------------- */
+========================= */
 
 .signup-page {
     min-height: 100vh;
@@ -27,35 +32,41 @@ body {
     justify-content: center;
     align-items: center;
 
-    padding: 20px;
+    padding: 70px 20px 30px;
 }
 
 
-/* ------------------------------
+/* =========================
    Signup Card
------------------------------- */
+========================= */
 
 .signup-container {
     width: 100%;
     max-width: 420px;
 
-    background: white;
+    background: #ffffff;
 
     padding: 40px;
 
     border-radius: 24px;
 
-    box-shadow: 0 15px 40px rgba(70, 55, 120, 0.15);
+    box-shadow:
+        0 12px 35px rgba(47, 52, 55, 0.08);
+
+    transition:
+        background 0.5s ease,
+        color 0.5s ease,
+        box-shadow 0.5s ease;
 }
 
 
-/* ------------------------------
-   Cute Mascot
------------------------------- */
+/* =========================
+   Mascot
+========================= */
 
 .mascot {
-    width: 80px;
-    height: 80px;
+    width: 75px;
+    height: 75px;
 
     margin: 0 auto 20px;
 
@@ -63,13 +74,14 @@ body {
     align-items: center;
     justify-content: center;
 
-    background: #f0ebff;
+    background: #f3eee6;
 
     border-radius: 50%;
 
-    font-size: 42px;
+    font-size: 40px;
 
-    animation: float 2s ease-in-out infinite;
+    animation:
+        float 2s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -85,13 +97,15 @@ body {
 }
 
 
-/* ------------------------------
+/* =========================
    Heading
------------------------------- */
+========================= */
 
 .signup-container h1 {
     font-size: 32px;
+
     margin-bottom: 10px;
+
     text-align: center;
 }
 
@@ -106,15 +120,15 @@ body {
 }
 
 
-/* ------------------------------
+/* =========================
    Form
------------------------------- */
+========================= */
 
 .form-group {
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
-.form-group label {
+.form-group > label {
     display: block;
 
     margin-bottom: 8px;
@@ -125,18 +139,25 @@ body {
 }
 
 
-/* ------------------------------
+/* =========================
    Inputs
------------------------------- */
+========================= */
 
-.form-group > input {
+.form-group > input,
+.password-box input {
     width: 100%;
 
     padding: 14px 16px;
 
-    border: 1px solid #ddd8ee;
+    border: 1px solid #ded9d0;
 
     border-radius: 12px;
+
+    background: #fff;
+
+    color: #2f3437;
+
+    font-family: inherit;
 
     font-size: 15px;
 
@@ -145,17 +166,18 @@ body {
     transition: 0.3s;
 }
 
-.form-group > input:focus {
-    border-color: #7c5cff;
+.form-group > input:focus,
+.password-box input:focus {
+    border-color: #c7a97b;
 
     box-shadow:
-        0 0 0 4px rgba(124, 92, 255, 0.1);
+        0 0 0 4px rgba(199, 169, 123, 0.12);
 }
 
 
-/* ------------------------------
+/* =========================
    Password
------------------------------- */
+========================= */
 
 .password-box {
     position: relative;
@@ -164,26 +186,7 @@ body {
 }
 
 .password-box input {
-    width: 100%;
-
-    padding: 14px 50px 14px 16px;
-
-    border: 1px solid #ddd8ee;
-
-    border-radius: 12px;
-
-    font-size: 15px;
-
-    outline: none;
-
-    transition: 0.3s;
-}
-
-.password-box input:focus {
-    border-color: #7c5cff;
-
-    box-shadow:
-        0 0 0 4px rgba(124, 92, 255, 0.1);
+    padding-right: 50px;
 }
 
 #togglePassword {
@@ -202,24 +205,93 @@ body {
 }
 
 
-/* ------------------------------
+/* =========================
+   Gender Options
+========================= */
+
+.gender-options {
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+.gender-option {
+    flex: 1;
+
+    min-width: 105px;
+
+    cursor: pointer;
+}
+
+.gender-option input {
+    display: none;
+}
+
+.gender-option span {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding: 8px 10px;
+
+    border: 1px solid #ded9d0;
+
+    border-radius: 12px;
+
+    background: #faf9f6;
+
+    color: #555;
+
+    font-size: 12px;
+
+    text-align: center;
+
+    transition: 0.25s ease;
+}
+
+.gender-option span:hover {
+    transform: translateY(-1px);
+
+    border-color: #c7a97b;
+}
+
+.gender-option input:checked + span {
+    background: #c7a97b;
+
+    border-color: #c7a97b;
+
+    color: #fff;
+
+    box-shadow:
+        0 5px 14px rgba(199, 169, 123, 0.22);
+}
+
+
+/* =========================
    Signup Button
------------------------------- */
+========================= */
 
 .signup-button {
     width: 100%;
 
     padding: 14px;
 
-    margin-top: 4px;
+    margin-top: 5px;
 
     border: none;
 
     border-radius: 12px;
 
-    background: #7c5cff;
+    background: #c7a97b;
 
     color: white;
+
+    font-family: inherit;
 
     font-size: 16px;
 
@@ -234,13 +306,13 @@ body {
     transform: translateY(-2px);
 
     box-shadow:
-        0 8px 20px rgba(124, 92, 255, 0.25);
+        0 8px 20px rgba(199, 169, 123, 0.25);
 }
 
 
-/* ------------------------------
+/* =========================
    Login Link
------------------------------- */
+========================= */
 
 .login-text {
     margin-top: 24px;
@@ -253,7 +325,7 @@ body {
 }
 
 .login-text a {
-    color: #7c5cff;
+    color: #b08b58;
 
     font-weight: bold;
 
@@ -262,4 +334,563 @@ body {
 
 .login-text a:hover {
     text-decoration: underline;
+}
+
+
+/* =========================
+   Night Mode
+========================= */
+
+body.night-mode .signup-container {
+    background: #242630;
+
+    color: #eee8dc;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+body.night-mode .welcome-text,
+body.night-mode .login-text {
+    color: #bcb8b0;
+}
+
+body.night-mode .form-group > label {
+    color: #eee8dc;
+}
+
+body.night-mode .form-group > input,
+body.night-mode .password-box input {
+    background: #30333d;
+
+    color: #eee8dc;
+
+    border-color: #474a55;
+}
+
+body.night-mode .form-group > input::placeholder,
+body.night-mode .password-box input::placeholder {
+    color: #918d86;
+}
+
+body.night-mode .form-group > input:focus,
+body.night-mode .password-box input:focus {
+    border-color: #f5cfa3;
+
+    box-shadow:
+        0 0 0 4px rgba(245, 207, 163, 0.10);
+}
+
+body.night-mode .mascot {
+    background: #30333d;
+}
+
+body.night-mode .gender-option span {
+    background: #30333d;
+
+    color: #c8c2b8;
+
+    border-color: #474a55;
+}
+
+body.night-mode .gender-option span:hover {
+    border-color: #f5cfa3;
+}
+
+body.night-mode .gender-option input:checked + span {
+    background: #f5cfa3;
+
+    border-color: #f5cfa3;
+
+    color: #242630;
+}
+
+body.night-mode .signup-button {
+    background: #f5cfa3;
+
+    color: #242630;
+}
+
+body.night-mode .login-text a {
+    color: #f5cfa3;
+}
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 600px) {
+
+    .signup-page {
+        padding: 80px 15px 25px;
+    }
+
+    .signup-container {
+        padding: 30px 22px;
+    }
+
+    .signup-container h1 {
+        font-size: 28px;
+    }
+
+    .gender-option {
+        min-width: 100%;
+    }
+
+}
+
+/* =========================
+   Profile Avatar
+========================= */
+
+.profile-avatar {
+    position: fixed;
+
+    top: 25px;
+    right: 90px;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #c7a97b;
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    z-index: 9999;
+
+    box-shadow:
+        0 6px 18px rgba(47, 52, 55, 0.12);
+
+    transition:
+        transform 0.25s ease,
+        background 0.5s ease,
+        color 0.5s ease;
+}
+
+.profile-avatar:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+
+/* =========================
+   Night Mode
+========================= */
+
+body.night-mode .profile-avatar {
+    background: #f5cfa3;
+    color: #242630;
+}
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 600px) {
+
+    .profile-avatar {
+        top: 15px;
+        right: 75px;
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 17px;
+    }
+
+}
+
+
+/* =========================
+   Password Requirements
+========================= */
+
+.password-requirements {
+    display: none;
+
+    margin-top: 10px;
+
+    padding: 10px 12px;
+
+    background: #faf9f6;
+
+    border-radius: 10px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+.password-requirements.show {
+    display: block;
+}
+
+.password-requirements p {
+    margin: 0;
+
+    color: #999;
+
+    transition: 0.2s ease;
+}
+
+.password-requirements p.valid {
+    color: #6d8b5b;
+}
+
+
+/* =========================
+   Success Message
+========================= */
+
+.signup-success {
+    display: none;
+
+    margin-top: 20px;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    background: #edf3e8;
+
+    color: #5f754e;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    animation: successAppear 0.4s ease;
+}
+
+.signup-success.show {
+    display: block;
+}
+
+
+@keyframes successAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================
+   Night Mode
+========================= */
+
+body.night-mode .password-requirements {
+    background: #30333d;
+}
+
+body.night-mode .password-requirements p {
+    color: #918d86;
+}
+
+body.night-mode .password-requirements p.valid {
+    color: #b9d49e;
+}
+
+body.night-mode .signup-success {
+    background: #303a2d;
+    color: #c7dfa9;
+}
+
+
+/* =========================
+   Gender Message
+========================= */
+
+.gender-message {
+    display: none;
+
+    margin-top: -8px;
+    margin-bottom: 15px;
+
+    padding: 10px 14px;
+
+    border-radius: 12px;
+
+    background: #fff4e6;
+    color: #9a6b32;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    text-align: center;
+
+    animation: genderMessageAppear 0.3s ease;
+}
+
+.gender-message.show {
+    display: block;
+}
+
+@keyframes genderMessageAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================
+   Success Overlay
+========================= */
+
+.success-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(47, 52, 55, 0.18);
+
+    backdrop-filter: blur(4px);
+
+    -webkit-backdrop-filter: blur(4px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 9998;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+}
+
+.success-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================
+   Signup Card Blur
+========================= */
+
+.signup-container.blur-card {
+    filter: blur(4px);
+
+    transform: scale(0.98);
+
+    opacity: 0.55;
+
+    transition:
+        filter 0.35s ease,
+        transform 0.35s ease,
+        opacity 0.35s ease;
+}
+
+
+/* =========================
+   Success Card
+========================= */
+
+.success-card {
+    width: min(360px, calc(100% - 40px));
+
+    padding: 35px 30px;
+
+    background: #ffffff;
+
+    border-radius: 24px;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 70px rgba(47, 52, 55, 0.20);
+
+    transform: translateY(15px) scale(0.94);
+
+    transition: transform 0.4s ease;
+
+    font-family: "Original Surfer", cursive;
+}
+
+.success-overlay.show .success-card {
+    transform: translateY(0) scale(1);
+}
+
+
+/* =========================
+   Success Icon
+========================= */
+
+.success-icon {
+    width: 75px;
+    height: 75px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #f3eee6;
+
+    border-radius: 50%;
+
+    font-size: 38px;
+
+    animation: successPop 0.5s ease;
+}
+
+@keyframes successPop {
+
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================
+   Success Text
+========================= */
+
+.success-card h2 {
+    margin-bottom: 8px;
+
+    font-size: 25px;
+
+    color: #2f3437;
+}
+
+.success-card p {
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   Loading Line
+========================= */
+
+.success-loader {
+    width: 80px;
+    height: 3px;
+
+    margin: 22px auto 0;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #eee7dc;
+
+    position: relative;
+}
+
+.success-loader::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 35%;
+    height: 100%;
+
+    background: #c7a97b;
+
+    border-radius: inherit;
+
+    animation: loadingLine 2.5s linear forwards;
+}
+
+@keyframes loadingLine {
+
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(300%);
+    }
+
+}
+
+
+/* =========================
+   Night Mode
+========================= */
+
+body.night-mode .success-overlay {
+    background: rgba(0, 0, 0, 0.35);
+}
+
+body.night-mode .success-card {
+    background: #242630;
+
+    color: #eee8dc;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45);
+}
+
+body.night-mode .success-icon {
+    background: #30333d;
+}
+
+body.night-mode .success-card h2 {
+    color: #eee8dc;
+}
+
+body.night-mode .success-card p {
+    color: #bcb8b0;
+}
+
+body.night-mode .success-loader {
+    background: #3a3d47;
+}
+
+body.night-mode .success-loader::after {
+    background: #f5cfa3;
 }
