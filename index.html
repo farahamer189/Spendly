@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,67 +19,155 @@
     >
 
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
-    <!-- Splash Screen -->
+    <!-- =========================
+         Splash Screen
+    ========================== -->
+
     <div class="splash-screen">
-        <img src="assets/spendly-logo.png" alt="Spendly logo">
+
+        <img
+            src="assets/spendly-logo.png"
+            alt="Spendly logo"
+        >
+
     </div>
 
 
-    <!-- Header -->
+    <!-- =========================
+         Theme Lamp
+    ========================== -->
+
+    <div class="theme-lamp">
+
+        <div class="lamp">
+
+            <div class="lamp-shade"></div>
+
+            <div class="lamp-light"></div>
+
+        </div>
+
+
+        <div class="lamp-cord" id="lamp-cord">
+
+            <div class="cord-handle"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         Header
+    ========================== -->
+
     <header>
 
-        <div class="logo">Spendly</div>
+        <div class="logo">
+            Spendly
+        </div>
+
 
         <nav>
-            <a href="#">Home</a>
-            <a href="#features">Features</a>
-            <a href="pages/login.html">Login</a>
+
+            <a href="#" data-i18n="home">
+                Home
+            </a>
+
+            <a href="#features" data-i18n="featuresNav">
+                Features
+            </a>
+
+            <a href="pages/login.html" data-i18n="login">
+                Login
+            </a>
+
         </nav>
 
     </header>
 
 
-    <!-- Hero -->
+    <!-- =========================
+         Hero
+    ========================== -->
+
     <section class="hero">
 
-        <p class="hero-label">SMART MONEY MANAGEMENT</p>
+        <p
+            class="hero-label"
+            data-i18n="heroLabel"
+        >
+            SMART MONEY MANAGEMENT
+        </p>
 
-        <h1>Take control of your money.</h1>
 
-        <p class="hero-text">
+        <h1 data-i18n="heroTitle">
+            Take control of your money.
+        </h1>
+
+
+        <p
+            class="hero-text"
+            data-i18n="heroText"
+        >
             Track your expenses, understand your spending,
             and make smarter financial decisions with Spendly.
         </p>
 
-        <button onclick="window.location.href='pages/login.html'">
+
+        <button
+            onclick="window.location.href='pages/login.html'"
+            data-i18n="getStarted"
+        >
             Get Started 🚀
         </button>
 
     </section>
 
 
-    <!-- How It Works -->
+    <!-- =========================
+         How It Works
+    ========================== -->
+
     <section class="how-it-works">
 
-        <p class="section-label">HOW IT WORKS</p>
+        <p
+            class="section-label"
+            data-i18n="howItWorksLabel"
+        >
+            HOW IT WORKS
+        </p>
 
-        <h2>Manage your money in 3 simple steps.</h2>
+
+        <h2 data-i18n="howItWorksTitle">
+            Manage your money in 3 simple steps.
+        </h2>
+
 
         <div class="steps-container">
 
+
             <div class="step-card">
 
-                <span class="step-number">01</span>
+                <span class="step-number">
+                    01
+                </span>
 
-                <div class="step-icon">💸</div>
+                <div class="step-icon">
+                    💸
+                </div>
 
-                <h3>Add your expenses</h3>
+                <h3 data-i18n="stepOneTitle">
+                    Add your expenses
+                </h3>
 
-                <p>
+                <p data-i18n="stepOneText">
                     Record what you spend, whenever you spend it.
                 </p>
 
@@ -87,13 +176,19 @@
 
             <div class="step-card">
 
-                <span class="step-number">02</span>
+                <span class="step-number">
+                    02
+                </span>
 
-                <div class="step-icon">🎯</div>
+                <div class="step-icon">
+                    🎯
+                </div>
 
-                <h3>Set your budget</h3>
+                <h3 data-i18n="stepTwoTitle">
+                    Set your budget
+                </h3>
 
-                <p>
+                <p data-i18n="stepTwoText">
                     Create a daily or monthly budget that works for you.
                 </p>
 
@@ -102,31 +197,56 @@
 
             <div class="step-card">
 
-                <span class="step-number">03</span>
+                <span class="step-number">
+                    03
+                </span>
 
-                <div class="step-icon">📊</div>
+                <div class="step-icon">
+                    📊
+                </div>
 
-                <h3>Understand your spending</h3>
+                <h3 data-i18n="stepThreeTitle">
+                    Understand your spending
+                </h3>
 
-                <p>
+                <p data-i18n="stepThreeText">
                     See where your money goes and make better decisions.
                 </p>
 
             </div>
+
 
         </div>
 
     </section>
 
 
-    <!-- Features -->
-    <section class="features" id="features">
+    <!-- =========================
+         Features
+    ========================== -->
 
-        <p class="features-label">WHY SPENDLY?</p>
+    <section
+        class="features"
+        id="features"
+    >
 
-        <h2>Everything you need to manage your money.</h2>
+        <p
+            class="features-label"
+            data-i18n="whySpendly"
+        >
+            WHY SPENDLY?
+        </p>
 
-        <p class="features-description">
+
+        <h2 data-i18n="featuresTitle">
+            Everything you need to manage your money.
+        </h2>
+
+
+        <p
+            class="features-description"
+            data-i18n="featuresDescription"
+        >
             Simple tools designed to help you understand
             where your money goes.
         </p>
@@ -134,14 +254,18 @@
 
         <div class="feature-cards">
 
-            <!-- Track Expenses -->
+
             <div class="feature-card">
 
-                <div class="feature-icon">💸</div>
+                <div class="feature-icon">
+                    💸
+                </div>
 
-                <h3>Track Expenses</h3>
+                <h3 data-i18n="trackExpenses">
+                    Track Expenses
+                </h3>
 
-                <p>
+                <p data-i18n="trackExpensesText">
                     Record your daily expenses and keep
                     everything organized in one place.
                 </p>
@@ -149,14 +273,17 @@
             </div>
 
 
-            <!-- Manage Budget -->
             <div class="feature-card">
 
-                <div class="feature-icon">🎯</div>
+                <div class="feature-icon">
+                    🎯
+                </div>
 
-                <h3>Manage Budget</h3>
+                <h3 data-i18n="manageBudget">
+                    Manage Budget
+                </h3>
 
-                <p>
+                <p data-i18n="manageBudgetText">
                     Set daily and monthly budgets and
                     stay on track with your spending.
                 </p>
@@ -164,14 +291,17 @@
             </div>
 
 
-            <!-- Understand Spending -->
             <div class="feature-card">
 
-                <div class="feature-icon">📊</div>
+                <div class="feature-icon">
+                    📊
+                </div>
 
-                <h3>Understand Spending</h3>
+                <h3 data-i18n="understandSpending">
+                    Understand Spending
+                </h3>
 
-                <p>
+                <p data-i18n="understandSpendingText">
                     Visualize your spending habits with
                     simple charts and useful statistics.
                 </p>
@@ -179,42 +309,70 @@
             </div>
 
 
-            <!-- Stay Organized -->
             <div class="feature-card">
 
-                <div class="feature-icon">🛒</div>
+                <div class="feature-icon">
+                    🛒
+                </div>
 
-                <h3>Stay Organized</h3>
+                <h3 data-i18n="stayOrganized">
+                    Stay Organized
+                </h3>
 
-                <p>
+                <p data-i18n="stayOrganizedText">
                     Create shopping and to-do lists and
                     keep everything organized in one place.
                 </p>
 
             </div>
 
+
         </div>
 
     </section>
 
 
+    <!-- =========================
+         Footer
+    ========================== -->
 
     <footer>
 
-    <div class="footer-brand">
+        <div class="footer-brand">
 
-        <p class="footer-tagline">Spend smart. Live better. 💜</p>
+            <p
+                class="footer-tagline"
+                data-i18n="footerTagline"
+            >
+                Spend smart. Live better. ✨
+            </p>
 
-        <div class="logo">Spendly</div>
 
-    </div>
+            <div class="logo">
+                Spendly
+            </div>
 
-    <div class="footer-bottom">
-        <p>© 2026 Spendly. All rights reserved.</p>
-    </div>
+        </div>
 
-</footer>
 
+        <div class="footer-bottom">
+
+            <p data-i18n="footerCopyright">
+                © 2026 Spendly. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         Scripts
+    ========================== -->
+
+    <script src="js/theme.js"></script>
+
+    <script src="js/language.js"></script>
 
 </body>
 

@@ -18,11 +18,97 @@ const translations = {
 
     en: {
 
+        /* ===== Landing ===== */
+
+        home:
+            "Home",
+
+        featuresNav:
+            "Features",
+
+        heroLabel:
+            "SMART MONEY MANAGEMENT",
+
+        heroTitle:
+            "Take control of your money.",
+
+        heroText:
+            "Track your expenses, understand your spending, and make smarter financial decisions with Spendly.",
+
+        getStarted:
+            "Get Started 🚀",
+
+        howItWorksLabel:
+            "HOW IT WORKS",
+
+        howItWorksTitle:
+            "Manage your money in 3 simple steps.",
+
+        stepOneTitle:
+            "Add your expenses",
+
+        stepOneText:
+            "Record what you spend, whenever you spend it.",
+
+        stepTwoTitle:
+            "Set your budget",
+
+        stepTwoText:
+            "Create a daily or monthly budget that works for you.",
+
+        stepThreeTitle:
+            "Understand your spending",
+
+        stepThreeText:
+            "See where your money goes and make better decisions.",
+
+        whySpendly:
+            "WHY SPENDLY?",
+
+        featuresTitle:
+            "Everything you need to manage your money.",
+
+        featuresDescription:
+            "Simple tools designed to help you understand where your money goes.",
+
+        trackExpenses:
+            "Track Expenses",
+
+        trackExpensesText:
+            "Record your daily expenses and keep everything organized in one place.",
+
+        manageBudget:
+            "Manage Budget",
+
+        manageBudgetText:
+            "Set daily and monthly budgets and stay on track with your spending.",
+
+        understandSpending:
+            "Understand Spending",
+
+        understandSpendingText:
+            "Visualize your spending habits with simple charts and useful statistics.",
+
+        stayOrganized:
+            "Stay Organized",
+
+        stayOrganizedText:
+            "Create shopping and to-do lists and keep everything organized in one place.",
+
+        footerTagline:
+            "Spend smart. Live better. ✨",
+
+        footerCopyright:
+            "© 2026 Spendly. All rights reserved.",
+
+
         /* ===== Daily ===== */
 
-        pageLabel: "YOUR DAY",
+        pageLabel:
+            "YOUR DAY",
 
-        title: "Today's Spending 💸",
+        title:
+            "Today's Spending 💸",
 
         subtitle:
             "Keep track of what you spend today.",
@@ -193,6 +279,7 @@ const translations = {
 
             Other:
                 "📦 Other"
+
         }
 
     },
@@ -203,6 +290,90 @@ const translations = {
     ========================= */
 
     ar: {
+
+        /* ===== Landing ===== */
+
+        home:
+            "الرئيسية",
+
+        featuresNav:
+            "المميزات",
+
+        heroLabel:
+            "إدارة أموالك بذكاء",
+
+        heroTitle:
+            "سيطري على فلوسك بسهولة.",
+
+        heroText:
+            "تابعي مصروفاتك، افهمي طريقة إنفاقك، وخدي قرارات مالية أذكى مع Spendly.",
+
+        getStarted:
+            "ابدئي دلوقتي 🚀",
+
+        howItWorksLabel:
+            "إزاي Spendly بيشتغل؟",
+
+        howItWorksTitle:
+            "رتبي فلوسك في 3 خطوات بسيطة.",
+
+        stepOneTitle:
+            "ضيفي مصروفاتك",
+
+        stepOneText:
+            "سجلي كل حاجة بتصرفيها وقت ما تصرفيها.",
+
+        stepTwoTitle:
+            "حددي ميزانيتك",
+
+        stepTwoText:
+            "اعملي ميزانية يومية أو شهرية مناسبة ليكي.",
+
+        stepThreeTitle:
+            "افهمي مصروفاتك",
+
+        stepThreeText:
+            "اعرفي فلوسك بتروح فين وخدي قرارات أحسن.",
+
+        whySpendly:
+            "ليه Spendly؟",
+
+        featuresTitle:
+            "كل اللي محتاجاه عشان ترتبي فلوسك.",
+
+        featuresDescription:
+            "أدوات بسيطة تساعدك تفهمي فلوسك بتروح فين.",
+
+        trackExpenses:
+            "تتبعي المصروفات",
+
+        trackExpensesText:
+            "سجلي مصروفاتك اليومية وخلي كل حاجة مترتبة في مكان واحد.",
+
+        manageBudget:
+            "إدارة الميزانية",
+
+        manageBudgetText:
+            "حددي ميزانية يومية وشهرية وخلي مصروفاتك تحت السيطرة.",
+
+        understandSpending:
+            "افهمي إنفاقك",
+
+        understandSpendingText:
+            "شوفي عادات إنفاقك من خلال إحصائيات ورسومات بسيطة.",
+
+        stayOrganized:
+            "خلي كل حاجة منظمة",
+
+        stayOrganizedText:
+            "اعملي قوائم للتسوق والمهام وخلي كل حاجة مترتبة.",
+
+        footerTagline:
+            "اصرفي بذكاء. عيشي أحسن. ✨",
+
+        footerCopyright:
+            "© 2026 Spendly. جميع الحقوق محفوظة.",
+
 
         /* ===== Daily ===== */
 
@@ -381,6 +552,7 @@ const translations = {
 
             Other:
                 "📦 أخرى"
+
         }
 
     }
@@ -469,6 +641,7 @@ function applyLanguage(language) {
 
 
                     if (
+                        categories &&
                         categories[category]
                     ) {
 
@@ -680,8 +853,6 @@ function applyLanguage(language) {
 
 function createLanguageButton() {
 
-    /* Prevent duplicate button */
-
     if (
         document.querySelector(
             "#language-toggle"
@@ -786,8 +957,6 @@ function updateLanguageButton(
 
 function addLanguageStyles() {
 
-    /* Prevent duplicate styles */
-
     if (
         document.querySelector(
             "#spendly-language-styles"
@@ -823,7 +992,7 @@ function addLanguageStyles() {
 
             border: none;
 
-            background: white;
+            background: #ffffff;
 
             color: #2f3437;
 
@@ -841,11 +1010,13 @@ function addLanguageStyles() {
 
             box-shadow:
                 0 6px 20px
-                rgba(0, 0, 0, 0.08);
+                rgba(47, 52, 55, 0.08);
 
             transition:
                 transform 0.2s ease,
-                box-shadow 0.2s ease;
+                box-shadow 0.2s ease,
+                background 0.4s ease,
+                color 0.4s ease;
 
         }
 
@@ -857,7 +1028,7 @@ function addLanguageStyles() {
 
             box-shadow:
                 0 9px 25px
-                rgba(0, 0, 0, 0.12);
+                rgba(47, 52, 55, 0.12);
 
         }
 

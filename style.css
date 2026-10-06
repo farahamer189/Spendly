@@ -1,157 +1,220 @@
+/* =========================
+   General
+========================= */
+
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f8f9ff;
-    color: #172033;
+
+    background: #f8f7f4;
+
+    color: #2f3437;
+
+    transition:
+        background 0.5s ease,
+        color 0.5s ease;
 }
 
 
-/* ============================= */
-/* Header */
-/* ============================= */
+/* =========================
+   Header
+========================= */
+
+/* =========================
+   Header
+========================= */
 
 header {
+    width: 100%;
+    padding: 24px 7%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    padding: 20px 60px;
-
-    background-color: white;
+    background: #f8f7f4;
+    position: relative;
+    z-index: 100;
 }
 
 .logo {
     font-family: "Original Surfer", cursive;
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 700;
-    color: #5b4bdb;
-    cursor: pointer;
+    color: #8f7048;
+    letter-spacing: 1px;
 }
 
 nav {
     display: flex;
-    gap: 32px;
+    align-items: center;
+    gap: 35px;
 }
 
 nav a {
     text-decoration: none;
-    color: #667085;
+    color: #5f5b55;
     font-size: 15px;
-
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
 nav a:hover {
-    color: #5b4bdb;
+    color: #a27d4f;
+}
+nav a:hover {
+    color: #b08b58;
+
+    transform: translateY(-1px);
 }
 
 
-/* ============================= */
-/* Hero */
-/* ============================= */
+/* =========================
+   Hero
+========================= */
 
 .hero {
     text-align: center;
 
-    padding: 100px 20px 90px;
+    padding: 105px 20px 95px;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #fffdf9 0%,
+            #f8f7f4 55%,
+            #f3eee6 100%
+        );
+
+    transition: background 0.5s ease;
 }
 
 .hero-label {
-    margin: 0 0 18px;
+    margin-bottom: 18px;
 
-    color: #5b4bdb;
+    color: #b08b58;
+
     font-family: "Original Surfer", cursive;
+
     font-size: 13px;
+
     font-weight: 700;
+
     letter-spacing: 2px;
 }
 
 .hero h1 {
-    max-width: 750px;
+    max-width: 780px;
 
     margin: 0 auto 24px;
 
-    color: #172033;
+    color: #2f3437;
+
     font-family: "Original Surfer", cursive;
+
     font-size: 64px;
+
     line-height: 1.1;
 }
 
 .hero-text {
-    max-width: 600px;
+    max-width: 620px;
 
-    margin: 0 auto 32px;
+    margin: 0 auto 34px;
 
-    color: #667085;
+    color: #77736d;
+
     font-size: 18px;
+
     line-height: 1.7;
 }
 
 .hero button {
     border: none;
 
-    padding: 14px 28px;
+    padding: 14px 30px;
 
-    background-color: #5b4bdb;
-    color: white;
+    background: #c7a97b;
 
-    border-radius: 10px;
+    color: #ffffff;
+
+    border-radius: 12px;
+
+    font-family: inherit;
 
     font-size: 15px;
+
     font-weight: 600;
 
     cursor: pointer;
 
-    transition: 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
 }
 
 .hero button:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 
-    box-shadow: 0 8px 20px rgba(91, 75, 219, 0.25);
+    background: #b99768;
+
+    box-shadow:
+        0 10px 24px rgba(176, 139, 88, 0.22);
 }
 
 
-/* ============================= */
-/* How It Works */
-/* ============================= */
+/* =========================
+   How It Works
+========================= */
 
 .how-it-works {
     max-width: 1100px;
 
     margin: 0 auto;
 
-    padding: 80px 20px;
+    padding: 85px 20px;
 
     text-align: center;
 }
 
 .section-label {
-    margin: 0 0 16px;
+    margin-bottom: 16px;
 
-    color: #5b4bdb;
+    color: #b08b58;
+
     font-family: "Original Surfer", cursive;
+
     font-size: 13px;
+
     font-weight: 700;
+
     letter-spacing: 2px;
 }
 
 .how-it-works h2 {
-    max-width: 650px;
+    max-width: 680px;
 
     margin: 0 auto 50px;
 
-    color: #172033;
+    color: #2f3437;
+
+    font-family: "Original Surfer", cursive;
+
     font-size: 40px;
+
     line-height: 1.2;
 }
 
 .steps-container {
     display: flex;
+
     gap: 24px;
 }
 
@@ -162,33 +225,39 @@ nav a:hover {
 
     padding: 32px;
 
-    background-color: white;
+    background: #ffffff;
 
-    border: 1px solid #eeeef5;
+    border: 1px solid #eee7dc;
+
     border-radius: 20px;
 
     text-align: left;
 
     transition:
         transform 0.3s ease,
-        box-shadow 0.3s ease;
+        box-shadow 0.3s ease,
+        background 0.5s ease,
+        border-color 0.5s ease;
 }
 
 .step-card:hover {
     transform: translateY(-6px);
 
-    box-shadow: 0 15px 40px rgba(30, 35, 90, 0.10);
+    box-shadow:
+        0 15px 40px rgba(47, 52, 55, 0.08);
 }
 
 .step-number {
     position: absolute;
 
     top: 24px;
+
     right: 26px;
 
-    color: #d8d4ff;
+    color: #d8c8ae;
 
     font-size: 13px;
+
     font-weight: 700;
 }
 
@@ -197,12 +266,14 @@ nav a:hover {
     height: 52px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     margin-bottom: 22px;
 
-    background-color: #eeeaff;
+    background: #f3eee6;
 
     border-radius: 14px;
 
@@ -210,58 +281,61 @@ nav a:hover {
 }
 
 .step-card h3 {
-    margin: 0 0 12px;
+    margin-bottom: 12px;
 
-    color: #172033;
+    color: #2f3437;
 
     font-size: 20px;
 }
 
 .step-card p {
-    margin: 0;
-
-    color: #667085;
+    color: #77736d;
 
     font-size: 15px;
+
     line-height: 1.7;
 }
 
 
-/* ============================= */
-/* Features */
-/* ============================= */
+/* =========================
+   Features
+========================= */
 
 .features {
     max-width: 1100px;
 
     margin: 0 auto;
 
-    padding: 80px 20px 100px;
+    padding: 80px 20px 105px;
 
     text-align: center;
 }
 
 .features-label {
-    margin: 0 0 16px;
+    margin-bottom: 16px;
 
-    color: #5b4bdb;
+    color: #b08b58;
 
     font-family: "Original Surfer", cursive;
+
     font-size: 13px;
+
     font-weight: 700;
 
     letter-spacing: 2px;
 }
 
 .features h2 {
-    max-width: 650px;
+    max-width: 680px;
 
     margin: 0 auto 18px;
 
-    color: #172033;
+    color: #2f3437;
 
     font-family: "Original Surfer", cursive;
+
     font-size: 40px;
+
     line-height: 1.2;
 }
 
@@ -270,9 +344,10 @@ nav a:hover {
 
     margin: 0 auto 50px;
 
-    color: #667085;
+    color: #77736d;
 
     font-size: 16px;
+
     line-height: 1.7;
 }
 
@@ -287,22 +362,26 @@ nav a:hover {
 .feature-card {
     padding: 32px;
 
-    background-color: white;
+    background: #ffffff;
 
-    border: 1px solid #eeeef5;
+    border: 1px solid #eee7dc;
+
     border-radius: 20px;
 
     text-align: left;
 
     transition:
         transform 0.3s ease,
-        box-shadow 0.3s ease;
+        box-shadow 0.3s ease,
+        background 0.5s ease,
+        border-color 0.5s ease;
 }
 
 .feature-card:hover {
     transform: translateY(-6px);
 
-    box-shadow: 0 15px 40px rgba(30, 35, 90, 0.10);
+    box-shadow:
+        0 15px 40px rgba(47, 52, 55, 0.08);
 }
 
 .feature-icon {
@@ -310,12 +389,14 @@ nav a:hover {
     height: 52px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     margin-bottom: 22px;
 
-    background-color: #eeeaff;
+    background: #f3eee6;
 
     border-radius: 14px;
 
@@ -323,33 +404,36 @@ nav a:hover {
 }
 
 .feature-card h3 {
-    margin: 0 0 12px;
+    margin-bottom: 12px;
 
-    color: #172033;
+    color: #2f3437;
 
     font-size: 20px;
 }
 
 .feature-card p {
-    margin: 0;
-
-    color: #667085;
+    color: #77736d;
 
     font-size: 15px;
+
     line-height: 1.7;
 }
 
 
-/* ============================= */
-/* Footer */
-/* ============================= */
+/* =========================
+   Footer
+========================= */
 
 footer {
     padding: 45px 60px 25px;
 
-    background-color: white;
+    background: #ffffff;
 
-    border-top: 1px solid #eeeef5;
+    border-top: 1px solid #eee7dc;
+
+    transition:
+        background 0.5s ease,
+        border-color 0.5s ease;
 }
 
 .footer-brand {
@@ -357,9 +441,9 @@ footer {
 }
 
 .footer-tagline {
-    margin: 0 0 10px;
+    margin-bottom: 10px;
 
-    color: #667085;
+    color: #77736d;
 
     font-size: 14px;
 }
@@ -373,23 +457,21 @@ footer {
 
     padding-top: 20px;
 
-    border-top: 1px solid #eeeef5;
+    border-top: 1px solid #eee7dc;
 
     text-align: center;
 }
 
 .footer-bottom p {
-    margin: 0;
-
-    color: #98a2b3;
+    color: #aaa39a;
 
     font-size: 12px;
 }
 
 
-/* ============================= */
-/* Splash Screen */
-/* ============================= */
+/* =========================
+   Splash Screen
+========================= */
 
 .splash-screen {
     position: fixed;
@@ -397,64 +479,311 @@ footer {
     inset: 0;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
-    background: #f7f5ff;
+    background:
+        radial-gradient(
+            circle at center,
+            #fffdf9 0%,
+            #f3eee6 55%,
+            #e9dfd0 100%
+        );
 
     z-index: 9999;
 
-    animation: splashFade 3s ease forwards;
+    animation:
+        splashFade 3s ease forwards;
 }
 
 .splash-screen img {
     width: 400px;
+
     height: 400px;
 
     object-fit: cover;
 
-    animation: logoPop 3s ease;
+    animation:
+        logoPop 3s ease;
 }
 
 @keyframes logoPop {
+
     0% {
         opacity: 0;
+
         transform: scale(0.7);
     }
 
     40% {
         opacity: 1;
+
         transform: scale(1.05);
     }
 
     70% {
         opacity: 1;
+
         transform: scale(1);
     }
 
     100% {
         opacity: 1;
+
         transform: scale(1);
     }
+
 }
 
 @keyframes splashFade {
+
     0%,
     80% {
         opacity: 1;
+
         visibility: visible;
     }
 
     100% {
         opacity: 0;
+
         visibility: hidden;
     }
+
 }
 
 
-/* ============================= */
-/* Responsive */
-/* ============================= */
+/* =========================
+   Theme Lamp
+========================= */
+
+.theme-lamp {
+    position: fixed;
+
+    top: 0;
+
+    right: 25px;
+
+    z-index: 10000;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.lamp {
+    position: relative;
+
+    width: 62px;
+
+    height: 45px;
+}
+
+.lamp-shade {
+    width: 62px;
+
+    height: 32px;
+
+    background: #c7a97b;
+
+    border-radius:
+        8px 8px 18px 18px;
+
+    box-shadow:
+        0 4px 10px rgba(47, 52, 55, 0.12);
+
+    transition:
+        background 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.lamp-light {
+    position: absolute;
+
+    left: 50%;
+
+    top: 27px;
+
+    width: 20px;
+
+    height: 10px;
+
+    transform: translateX(-50%);
+
+    background: #f7d99e;
+
+    border-radius: 50%;
+
+    filter: blur(4px);
+
+    opacity: 0.8;
+
+    transition: opacity 0.4s ease;
+}
+
+.lamp-cord {
+    width: 3px;
+
+    height: 48px;
+
+    background: #77736d;
+
+    cursor: pointer;
+
+    transition:
+        height 0.2s ease,
+        background 0.3s ease;
+}
+
+.cord-handle {
+    position: absolute;
+
+    margin-top: 43px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 13px;
+
+    height: 13px;
+
+    background: #c7a97b;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 8px rgba(47, 52, 55, 0.15);
+}
+
+.theme-lamp.pulling .lamp-cord {
+    height: 58px;
+}
+
+
+/* =========================
+   Night Mode
+========================= */
+
+body.night-mode {
+    background: #1f2128;
+
+    color: #eee8dc;
+}
+
+body.night-mode header,
+body.night-mode footer {
+    background: #242630;
+
+    border-color: #343741;
+}
+
+body.night-mode .logo {
+    color: #f5cfa3;
+}
+
+body.night-mode nav a {
+    color: #bcb8b0;
+}
+
+body.night-mode nav a:hover {
+    color: #f5cfa3;
+}
+
+body.night-mode .hero {
+    background:
+        radial-gradient(
+            circle at top,
+            #30333d 0%,
+            #242630 55%,
+            #1f2128 100%
+        );
+}
+
+body.night-mode .hero h1,
+body.night-mode .how-it-works h2,
+body.night-mode .features h2,
+body.night-mode .step-card h3,
+body.night-mode .feature-card h3 {
+    color: #eee8dc;
+}
+
+body.night-mode .hero-text,
+body.night-mode .step-card p,
+body.night-mode .feature-card p,
+body.night-mode .features-description,
+body.night-mode .footer-tagline {
+    color: #bcb8b0;
+}
+
+body.night-mode .hero-label,
+body.night-mode .section-label,
+body.night-mode .features-label {
+    color: #f5cfa3;
+}
+
+body.night-mode .hero button {
+    background: #f5cfa3;
+
+    color: #242630;
+}
+
+body.night-mode .step-card,
+body.night-mode .feature-card {
+    background: #242630;
+
+    border-color: #343741;
+}
+
+body.night-mode .step-card:hover,
+body.night-mode .feature-card:hover {
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+body.night-mode .step-icon,
+body.night-mode .feature-icon {
+    background: #30333d;
+}
+
+body.night-mode .step-number {
+    color: #665c4d;
+}
+
+body.night-mode .footer-bottom {
+    border-color: #343741;
+}
+
+body.night-mode .footer-bottom p {
+    color: #85817a;
+}
+
+body.night-mode .lamp-shade {
+    background: #f5cfa3;
+}
+
+body.night-mode .lamp-light {
+    opacity: 0.25;
+}
+
+body.night-mode .lamp-cord {
+    background: #918d86;
+}
+
+body.night-mode .cord-handle {
+    background: #f5cfa3;
+}
+
+
+/* =========================
+   Mobile
+========================= */
 
 @media (max-width: 900px) {
 
@@ -519,6 +848,7 @@ footer {
 
     .splash-screen img {
         width: 280px;
+
         height: 280px;
     }
 
