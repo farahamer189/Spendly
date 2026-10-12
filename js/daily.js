@@ -1,1097 +1,978 @@
 
 /* =========================
-   Daily Page Elements
+   Spendly - My Money
 ========================= */
 
-const addSpendingButton =
-    document.querySelector("#add-spending-btn");
+/* Page Elements */
+const addSpendingButton = document.querySelector("#add-spending-btn");
+const spendingModal = document.querySelector("#spending-modal");
+const closeModalButton = document.querySelector("#close-modal");
+const cancelModalButton = document.querySelector("#cancel-modal");
+const spendingForm = document.querySelector("#spending-form");
+const spendingList = document.querySelector("#spending-list");
+const successToast = document.querySelector("#success-toast");
 
-const spendingModal =
-    document.querySelector("#spending-modal");
+/* Daily Budget Elements */
+const setBudgetButton = document.querySelector("#set-budget-btn");
+const budgetModal = document.querySelector("#budget-modal");
+const closeBudgetModalButton = document.querySelector("#close-budget-modal");
+const cancelBudgetModalButton = document.querySelector("#cancel-budget-modal");
+const budgetForm = document.querySelector("#budget-form");
+const budgetAmountInput = document.querySelector("#budget-amount");
+const editDailyBudgetButton = document.querySelector("#edit-daily-budget-btn");
+const deleteDailyBudgetButton = document.querySelector("#delete-daily-budget-btn");
 
-const closeModalButton =
-    document.querySelector("#close-modal");
+/* Monthly Budget Elements */
+const monthlyBudgetElement = document.querySelector("#monthly-budget");
+const monthlyRemainingElement = document.querySelector("#monthly-remaining");
+const editMonthlyBudgetButton = document.querySelector("#edit-monthly-budget-btn");
+const deleteMonthlyBudgetButton = document.querySelector("#delete-monthly-budget-btn");
+const monthlyBudgetModal = document.querySelector("#monthly-budget-modal");
+const monthlyBudgetForm = document.querySelector("#monthly-budget-form");
+const monthlyBudgetAmountInput = document.querySelector("#monthly-budget-amount");
+const closeMonthlyBudgetModalButton = document.querySelector("#close-monthly-budget-modal");
+const cancelMonthlyBudgetModalButton = document.querySelector("#cancel-monthly-budget-modal");
 
-const cancelModalButton =
-    document.querySelector("#cancel-modal");
+/* Summary Elements */
+const dailyBudgetElement = document.querySelector("#daily-budget");
+const spentTodayElement = document.querySelector("#spent-today");
+const remainingBudgetElement = document.querySelector("#remaining-budget");
+const dailyMessageText = document.querySelector("#daily-message-text");
 
-const spendingForm =
-    document.querySelector("#spending-form");
+/* Spending Form Elements */
+const spendingNameInput = document.querySelector("#spending-name");
+const spendingAmountInput = document.querySelector("#spending-amount");
+const spendingCategoryInput = document.querySelector("#spending-category");
+const saveSpendingButton = document.querySelector(".save-spending-btn");
 
-const spendingList =
-    document.querySelector("#spending-list");
+/* Delete Spending Modal */
+const deleteModal = document.querySelector("#delete-modal");
+const deleteCancelButton = document.querySelector("#delete-cancel-btn");
+const deleteConfirmButton = document.querySelector("#delete-confirm-btn");
 
-const successToast =
-    document.querySelector("#success-toast");
+/* Delete Budget Modal */
+const budgetDeleteModal = document.querySelector("#budget-delete-modal");
+const budgetDeleteMessage = document.querySelector("#budget-delete-message");
+const budgetDeleteCancelButton = document.querySelector("#budget-delete-cancel-btn");
+const budgetDeleteConfirmButton = document.querySelector("#budget-delete-confirm-btn");
 
-
-/* =========================
-   Budget Elements
-========================= */
-
-const setBudgetButton =
-    document.querySelector("#set-budget-btn");
-
-const budgetModal =
-    document.querySelector("#budget-modal");
-
-const closeBudgetModalButton =
-    document.querySelector("#close-budget-modal");
-
-const cancelBudgetModalButton =
-    document.querySelector("#cancel-budget-modal");
-
-const budgetForm =
-    document.querySelector("#budget-form");
-
-
-/* =========================
-   Summary Elements
-========================= */
-
-const dailyBudgetElement =
-    document.querySelector("#daily-budget");
-
-const spentTodayElement =
-    document.querySelector("#spent-today");
-
-const remainingBudgetElement =
-    document.querySelector("#remaining-budget");
-
-
-/* =========================
-   Message Elements
-========================= */
-
-const dailyMessage =
-    document.querySelector("#daily-message");
-
-const dailyMessageText =
-    document.querySelector("#daily-message-text");
-
-
-/* =========================
-   Form Elements
-========================= */
-
-const spendingNameInput =
-    document.querySelector("#spending-name");
-
-const spendingAmountInput =
-    document.querySelector("#spending-amount");
-
-const spendingCategoryInput =
-    document.querySelector("#spending-category");
-
-const saveSpendingButton =
-    document.querySelector(".save-spending-btn");
-
-
-/* =========================
-   Delete Modal Elements
-========================= */
-
-const deleteModal =
-    document.querySelector("#delete-modal");
-
-const deleteCancelButton =
-    document.querySelector("#delete-cancel-btn");
-
-const deleteConfirmButton =
-    document.querySelector("#delete-confirm-btn");
-
-
-/* =========================
-   States
-========================= */
-
-let deletingSpendingIndex = null;
-let editingSpendingIndex = null;
-
-
-/* =========================
-   Daily Budget
-========================= */
-
+/* State */
+let editingSpendingId = null;
+let deletingSpendingId = null;
+let deletingBudgetType = null;
 let dailyBudget = null;
+let monthlyBudget = null;
 
+/* Date Helpers */
+function getDateKey(date = new Date()) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+}
+
+function getMonthKey(date = new Date()) {
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
+}
+
+function getCurrentDateKey() {
+    return getDateKey(new Date());
+}
+
+function getCurrentMonthKey() {
+    return getMonthKey(new Date());
+}
+
+/* Category Icons */
+const categoryIcons = {
+    Food: "🍔",
+    Transportation: "🚕",
+    Shopping: "🛒",
+    Bills: "💡",
+    Entertainment: "🎬",
+    Health: "💊",
+    Other: "📦"
+};
+
+/* Language Helpers */
+function getCurrentLanguage() {
+    return localStorage.getItem("spendlyLanguage") || "en";
+}
+
+function getText(key) {
+    const language = getCurrentLanguage();
+
+    if (typeof translations !== "undefined") {
+        return translations[language]?.[key]
+            ?? translations.en?.[key]
+            ?? key;
+    }
+
+    return key;
+}
+
+function getCategoryText(category) {
+    if (typeof translations !== "undefined") {
+        const language = getCurrentLanguage();
+
+        return translations[language]?.categories?.[category]
+            ?? translations.en?.categories?.[category]
+            ?? category;
+    }
+
+    return category;
+}
+
+/* Currency Formatting */
+function formatMoney(amount) {
+    const language = getCurrentLanguage();
+
+    const formattedAmount = Number(amount).toLocaleString(
+        language === "ar" ? "ar-EG" : "en-US",
+        {
+            maximumFractionDigits: 2
+        }
+    );
+
+    return `${formattedAmount} EGP`;
+}
+
+/* Escape User-Entered Text */
+function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, function (character) {
+        const entities = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        };
+
+        return entities[character];
+    });
+}
 
 /* =========================
-   Today's Date
+   Load All Spending
 ========================= */
 
-const todayDate =
-    new Date().toDateString();
+let allSpending = [];
 
+try {
+    const savedSpending = JSON.parse(
+        localStorage.getItem("spendlySpending") || "[]"
+    );
+
+    if (Array.isArray(savedSpending)) {
+        allSpending = savedSpending.map(function (spending, index) {
+            const date = new Date(spending.date);
+            const validDate = Number.isNaN(date.getTime())
+                ? new Date()
+                : date;
+
+            const time = new Date(spending.time || spending.date || validDate);
+            const validTime = Number.isNaN(time.getTime())
+                ? validDate
+                : time;
+
+            return {
+                ...spending,
+                id: spending.id ?? `legacy-${index}-${validDate.getTime()}`,
+                name: String(spending.name ?? ""),
+                amount: Number(spending.amount) || 0,
+                category: spending.category || "Other",
+                date: validDate,
+                time: validTime
+            };
+        });
+    }
+} catch (error) {
+    console.error("Could not load saved spending.", error);
+    allSpending = [];
+}
+
+/* Save Spending Records */
+function saveSpendingRecords() {
+    localStorage.setItem("spendlySpending", JSON.stringify(allSpending));
+}
+
+/* Only Today's Spending */
+function getTodaySpending() {
+    const today = getCurrentDateKey();
+
+    return allSpending.filter(function (spending) {
+        return getDateKey(new Date(spending.date)) === today;
+    });
+}
+
+/* =========================
+   Load Monthly Budgets
+========================= */
+
+let monthlyBudgets = {};
+
+try {
+    monthlyBudgets = JSON.parse(
+        localStorage.getItem("spendlyMonthlyBudgets") || "{}"
+    );
+
+    if (
+        !monthlyBudgets ||
+        typeof monthlyBudgets !== "object" ||
+        Array.isArray(monthlyBudgets)
+    ) {
+        monthlyBudgets = {};
+    }
+} catch (error) {
+    monthlyBudgets = {};
+}
+
+/* Support Existing Monthly Budget Data */
+function loadMonthlyBudget() {
+    const monthKey = getCurrentMonthKey();
+
+    if (Object.prototype.hasOwnProperty.call(monthlyBudgets, monthKey)) {
+        const amount = Number(monthlyBudgets[monthKey]);
+
+        monthlyBudget = Number.isFinite(amount) && amount > 0
+            ? amount
+            : null;
+
+        return;
+    }
+
+    const oldBudget = localStorage.getItem("spendlyMonthlyBudget");
+
+    if (oldBudget !== null && oldBudget !== "") {
+        const amount = Number(oldBudget);
+
+        if (Number.isFinite(amount) && amount > 0) {
+            monthlyBudget = amount;
+            monthlyBudgets[monthKey] = amount;
+
+            localStorage.setItem(
+                "spendlyMonthlyBudgets",
+                JSON.stringify(monthlyBudgets)
+            );
+
+            return;
+        }
+    }
+
+    monthlyBudget = null;
+}
+
+loadMonthlyBudget();
+
+/* Save Monthly Budget */
+function saveMonthlyBudget() {
+    const monthKey = getCurrentMonthKey();
+
+    monthlyBudgets[monthKey] = monthlyBudget;
+
+    localStorage.setItem(
+        "spendlyMonthlyBudgets",
+        JSON.stringify(monthlyBudgets)
+    );
+}
 
 /* =========================
    Load Today's Budget
 ========================= */
 
-const savedBudget =
-    localStorage.getItem("spendlyDailyBudget");
-
-if (savedBudget) {
+function loadDailyBudget() {
+    dailyBudget = null;
 
     try {
-
-        const budgetData =
-            JSON.parse(savedBudget);
-
-        if (
-            budgetData &&
-            typeof budgetData === "object" &&
-            budgetData.date === todayDate
-        ) {
-
-            dailyBudget =
-                Number(budgetData.amount);
-
-        }
-
-    } catch (error) {
-
-        console.log(
-            "Could not load daily budget."
+        const savedBudget = JSON.parse(
+            localStorage.getItem("spendlyDailyBudget") || "null"
         );
 
-    }
+        if (!savedBudget || typeof savedBudget !== "object") {
+            return;
+        }
 
+        const savedDate = savedBudget.date;
+
+        const isToday =
+            savedDate === getCurrentDateKey() ||
+            savedDate === new Date().toDateString();
+
+        const amount = Number(savedBudget.amount);
+
+        if (isToday && Number.isFinite(amount) && amount > 0) {
+            dailyBudget = amount;
+        }
+    } catch (error) {
+        console.error("Could not load daily budget.", error);
+    }
 }
 
+loadDailyBudget();
 
-/* =========================
-   Save Today's Budget
-========================= */
-
+/* Save Today's Budget */
 function saveDailyBudget() {
+    if (dailyBudget === null) {
+        localStorage.removeItem("spendlyDailyBudget");
+        return;
+    }
 
     localStorage.setItem(
         "spendlyDailyBudget",
         JSON.stringify({
             amount: dailyBudget,
-            date: todayDate
+            date: getCurrentDateKey()
         })
     );
-
 }
 
-
 /* =========================
-   Show Saved Budget
+   Modal Helpers
 ========================= */
 
-if (dailyBudget !== null) {
-
-    dailyBudgetElement.textContent =
-        `${dailyBudget.toLocaleString()} EGP`;
-
+function openModal(modal) {
+    if (modal) {
+        modal.classList.add("show");
+    }
 }
 
-
-/* =========================
-   Today's Spending
-========================= */
-
-let todaySpending = [];
-
-
-/* =========================
-   Load Saved Spending
-========================= */
-
-const savedSpending =
-    localStorage.getItem("spendlySpending");
-
-if (savedSpending) {
-
-    try {
-
-        todaySpending =
-            JSON.parse(savedSpending);
-
-        todaySpending.forEach(
-            function (spending) {
-
-                spending.date =
-                    new Date(spending.date);
-
-                spending.time =
-                    new Date(spending.time);
-
-            }
-        );
-
-    } catch (error) {
-
-        todaySpending = [];
-
-        console.log(
-            "Could not load saved spending."
-        );
-
+function closeModal(modal) {
+    if (modal) {
+        modal.classList.remove("show");
     }
-
 }
-
-
-/* =========================
-   Save Spending
-========================= */
-
-function saveSpending() {
-
-    localStorage.setItem(
-        "spendlySpending",
-        JSON.stringify(todaySpending)
-    );
-
-}
-
-
-/* =========================
-   Category Icons
-========================= */
-
-const categoryIcons = {
-
-    Food: "🍔",
-
-    Transportation: "🚕",
-
-    Shopping: "🛒",
-
-    Bills: "💡",
-
-    Entertainment: "🎬",
-
-    Health: "💊",
-
-    Other: "📦"
-
-};
-
-
-/* =========================
-   Current Language
-========================= */
-
-function getCurrentLanguage() {
-
-    return localStorage.getItem(
-        "spendlyLanguage"
-    ) || "en";
-
-}
-
-
-/* =========================
-   Translation Helper
-========================= */
-
-function getText(key) {
-
-    const language =
-        getCurrentLanguage();
-
-    return translations[language][key];
-
-}
-
-
-/* =========================
-   Category Translation
-========================= */
-
-function getCategoryText(category) {
-
-    const language =
-        getCurrentLanguage();
-
-    return (
-        translations[language]
-            .categories[category]
-        || category
-    );
-
-}
-
-
-/* =========================
-   Open Add Spending Modal
-========================= */
-
-addSpendingButton.addEventListener(
-    "click",
-    function () {
-
-        editingSpendingIndex = null;
-
-        spendingForm.reset();
-
-        saveSpendingButton.textContent =
-            getText("saveSpending");
-
-        spendingModal.classList.add("show");
-
-    }
-);
-
-
-/* =========================
-   Close Spending Modal
-========================= */
-
-closeModalButton.addEventListener(
-    "click",
-    function () {
-
-        spendingModal.classList.remove("show");
-
-        editingSpendingIndex = null;
-
-    }
-);
-
-
-cancelModalButton.addEventListener(
-    "click",
-    function () {
-
-        spendingModal.classList.remove("show");
-
-        editingSpendingIndex = null;
-
-    }
-);
-
-
-/* =========================
-   Open Budget Modal
-========================= */
-
-setBudgetButton.addEventListener(
-    "click",
-    function () {
-
-        budgetModal.classList.add("show");
-
-    }
-);
-
-
-/* =========================
-   Close Budget Modal
-========================= */
-
-closeBudgetModalButton.addEventListener(
-    "click",
-    function () {
-
-        budgetModal.classList.remove("show");
-
-    }
-);
-
-
-cancelBudgetModalButton.addEventListener(
-    "click",
-    function () {
-
-        budgetModal.classList.remove("show");
-
-    }
-);
-
-
-/* =========================
-   Set Budget
-========================= */
-
-budgetForm.addEventListener(
-    "submit",
-    function (event) {
-
-        event.preventDefault();
-
-        const budgetAmount =
-            Number(
-                document.querySelector(
-                    "#budget-amount"
-                ).value
-            );
-
-        dailyBudget =
-            budgetAmount;
-
-        saveDailyBudget();
-
-        dailyBudgetElement.textContent =
-            `${dailyBudget.toLocaleString()} EGP`;
-
-        updateDailySummary();
-
-        budgetForm.reset();
-
-        budgetModal.classList.remove("show");
-
-    }
-);
-
-
-/* =========================
-   Add / Edit Spending
-========================= */
-
-spendingForm.addEventListener(
-    "submit",
-    function (event) {
-
-        event.preventDefault();
-
-
-        /* Get Form Values */
-
-        const name =
-            spendingNameInput.value.trim();
-
-        const amount =
-            Number(
-                spendingAmountInput.value
-            );
-
-        const category =
-            spendingCategoryInput.value;
-
-
-        /* =========================
-           Edit Existing Spending
-        ========================= */
-
-        if (editingSpendingIndex !== null) {
-
-            const spending =
-                todaySpending[
-                    editingSpendingIndex
-                ];
-
-
-            spending.name =
-                name;
-
-            spending.amount =
-                amount;
-
-            spending.category =
-                category;
-
-
-            saveSpending();
-
-            displaySpending();
-
-            updateDailySummary();
-
-
-            showSuccessToast(
-                getText("spendingUpdated")
-            );
-
-        }
-
-
-        /* =========================
-           Add New Spending
-        ========================= */
-
-        else {
-
-            const now =
-                new Date();
-
-
-            const spending = {
-
-                name:
-                    name,
-
-                amount:
-                    amount,
-
-                category:
-                    category,
-
-                date:
-                    now,
-
-                time:
-                    now
-
-            };
-
-
-            todaySpending.push(
-                spending
-            );
-
-
-            saveSpending();
-
-            displaySpending();
-
-            updateDailySummary();
-
-
-            showSuccessToast(
-                getText("spendingAdded")
-            );
-
-        }
-
-
-        /* Reset Edit State */
-
-        editingSpendingIndex =
-            null;
-
-
-        /* Reset Form */
-
-        spendingForm.reset();
-
-
-        /* Reset Button */
-
-        saveSpendingButton.textContent =
-            getText("saveSpending");
-
-
-        /* Close Modal */
-
-        spendingModal.classList.remove(
-            "show"
-        );
-
-    }
-);
-
 
 /* =========================
    Success Toast
 ========================= */
 
+let toastTimeout;
+
 function showSuccessToast(message) {
+    if (!successToast) return;
 
-    const toastMessage =
-        successToast.querySelector("p");
+    const toastMessage = successToast.querySelector("p");
 
-
-    toastMessage.textContent =
-        message;
-
+    if (toastMessage) {
+        toastMessage.textContent = message;
+    }
 
     successToast.classList.add("show");
 
+    clearTimeout(toastTimeout);
 
-    setTimeout(
-        function () {
-
-            successToast.classList.remove(
-                "show"
-            );
-
-        },
-        2000
-    );
-
+    toastTimeout = setTimeout(function () {
+        successToast.classList.remove("show");
+    }, 2500);
 }
 
+/* =========================
+   Spending Modal
+========================= */
+
+if (addSpendingButton) {
+    addSpendingButton.addEventListener("click", function () {
+        editingSpendingId = null;
+
+        spendingForm.reset();
+
+        if (saveSpendingButton) {
+            saveSpendingButton.textContent = getText("saveSpending");
+        }
+
+        openModal(spendingModal);
+    });
+}
+
+if (closeModalButton) {
+    closeModalButton.addEventListener("click", function () {
+        closeModal(spendingModal);
+        editingSpendingId = null;
+    });
+}
+
+if (cancelModalButton) {
+    cancelModalButton.addEventListener("click", function () {
+        closeModal(spendingModal);
+        editingSpendingId = null;
+    });
+}
+
+/* =========================
+   Daily Budget Modal
+========================= */
+
+function openDailyBudgetModal() {
+    budgetForm.reset();
+    budgetAmountInput.value = dailyBudget ?? "";
+
+    openModal(budgetModal);
+}
+
+if (setBudgetButton) {
+    setBudgetButton.addEventListener("click", openDailyBudgetModal);
+}
+
+if (editDailyBudgetButton) {
+    editDailyBudgetButton.addEventListener("click", openDailyBudgetModal);
+}
+
+if (closeBudgetModalButton) {
+    closeBudgetModalButton.addEventListener("click", function () {
+        closeModal(budgetModal);
+    });
+}
+
+if (cancelBudgetModalButton) {
+    cancelBudgetModalButton.addEventListener("click", function () {
+        closeModal(budgetModal);
+    });
+}
+
+/* Save Today's Budget */
+if (budgetForm) {
+    budgetForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const amount = Number(budgetAmountInput.value);
+
+        if (!Number.isFinite(amount) || amount <= 0) {
+            budgetAmountInput.focus();
+            return;
+        }
+
+        dailyBudget = amount;
+
+        saveDailyBudget();
+        updateDailySummary();
+
+        budgetForm.reset();
+        closeModal(budgetModal);
+
+        showSuccessToast(
+            getCurrentLanguage() === "ar"
+                ? "تم حفظ ميزانية اليوم بنجاح!"
+                : "Today's budget saved successfully!"
+        );
+    });
+}
+
+/* =========================
+   Monthly Budget Modal
+========================= */
+
+if (editMonthlyBudgetButton) {
+    editMonthlyBudgetButton.addEventListener("click", function () {
+        monthlyBudgetAmountInput.value = monthlyBudget ?? "";
+        openModal(monthlyBudgetModal);
+    });
+}
+
+if (closeMonthlyBudgetModalButton) {
+    closeMonthlyBudgetModalButton.addEventListener("click", function () {
+        closeModal(monthlyBudgetModal);
+    });
+}
+
+if (cancelMonthlyBudgetModalButton) {
+    cancelMonthlyBudgetModalButton.addEventListener("click", function () {
+        closeModal(monthlyBudgetModal);
+    });
+}
+
+/* Save Monthly Budget */
+if (monthlyBudgetForm) {
+    monthlyBudgetForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const amount = Number(monthlyBudgetAmountInput.value);
+
+        if (!Number.isFinite(amount) || amount <= 0) {
+            monthlyBudgetAmountInput.focus();
+            return;
+        }
+
+        monthlyBudget = amount;
+
+        saveMonthlyBudget();
+        updateDailySummary();
+
+        monthlyBudgetForm.reset();
+        closeModal(monthlyBudgetModal);
+
+        showSuccessToast(
+            getCurrentLanguage() === "ar"
+                ? "تم حفظ الميزانية الشهرية بنجاح!"
+                : "Monthly budget saved successfully!"
+        );
+    });
+}
+
+/* =========================
+   Add / Edit Spending
+========================= */
+
+if (spendingForm) {
+    spendingForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = spendingNameInput.value.trim();
+        const amount = Number(spendingAmountInput.value);
+        const category = spendingCategoryInput.value;
+
+        if (
+            !name ||
+            !Number.isFinite(amount) ||
+            amount <= 0 ||
+            !category
+        ) {
+            return;
+        }
+
+        if (editingSpendingId !== null) {
+            const spending = allSpending.find(function (item) {
+                return String(item.id) === String(editingSpendingId);
+            });
+
+            if (!spending) return;
+
+            spending.name = name;
+            spending.amount = amount;
+            spending.category = category;
+
+            showSuccessToast(getText("spendingUpdated"));
+        } else {
+            const now = new Date();
+
+            allSpending.push({
+                id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+                name: name,
+                amount: amount,
+                category: category,
+                date: now,
+                time: now
+            });
+
+            showSuccessToast(getText("spendingAdded"));
+        }
+
+        saveSpendingRecords();
+        displaySpending();
+        updateDailySummary();
+
+        editingSpendingId = null;
+        spendingForm.reset();
+
+        if (saveSpendingButton) {
+            saveSpendingButton.textContent = getText("saveSpending");
+        }
+
+        closeModal(spendingModal);
+    });
+}
 
 /* =========================
    Display Today's Spending
 ========================= */
 
 function displaySpending() {
+    if (!spendingList) return;
 
     spendingList.innerHTML = "";
 
-
-    /* Empty State */
+    const todaySpending = getTodaySpending();
 
     if (todaySpending.length === 0) {
-
         spendingList.innerHTML = `
             <div class="empty-spending">
-
                 <span>💸</span>
-
-                <p>
-                    ${getText("emptySpending")}
-                </p>
-
+                <p>${escapeHTML(getText("emptySpending"))}</p>
             </div>
         `;
 
         return;
-
     }
 
+    todaySpending.sort(function (a, b) {
+        return new Date(b.time) - new Date(a.time);
+    });
 
-    /* Display Spending */
+    todaySpending.forEach(function (spending) {
+        const spendingCard = document.createElement("div");
 
-    todaySpending.forEach(
-        function (spending, index) {
+        spendingCard.classList.add("spending-card");
 
-            const spendingCard =
-                document.createElement(
-                    "div"
-                );
+        const icon = categoryIcons[spending.category] || "📦";
+        const categoryName = getCategoryText(spending.category);
 
-
-            spendingCard.classList.add(
-                "spending-card"
-            );
-
-
-            /* Category Icon */
-
-            const icon =
-                categoryIcons[
-                    spending.category
-                ] || "📦";
-
-
-            /* Category Name */
-
-            const categoryName =
-                getCategoryText(
-                    spending.category
-                );
-
-
-            /* Spending Time */
-
-            const time =
-                spending.time.toLocaleTimeString(
-                    "en-US",
-                    {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                        hour12: true
-                    }
-                );
-
-
-            /* Spending Card */
-
-            spendingCard.innerHTML = `
-
-                <div class="spending-info">
-
-                    <span class="spending-icon">
-                        ${icon}
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            ${spending.name}
-                        </h3>
-
-                        <p>
-                            ${categoryName} · ${time}
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="spending-right">
-
-                    <strong class="spending-amount">
-                        ${spending.amount.toLocaleString()} EGP
-                    </strong>
-
-
-                    <div class="spending-actions">
-
-                        <button
-                            class="edit-spending-btn"
-                            type="button"
-                            data-index="${index}"
-                        >
-                            ✏️
-                        </button>
-
-
-                        <button
-                            class="delete-spending-btn"
-                            type="button"
-                            data-index="${index}"
-                        >
-                            🗑️
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `;
-
-
-            spendingList.appendChild(
-                spendingCard
-            );
-
-        }
-    );
-
-
-    /* =========================
-       Edit Buttons
-    ========================= */
-
-    const editButtons =
-        document.querySelectorAll(
-            ".edit-spending-btn"
+        const time = new Date(spending.time).toLocaleTimeString(
+            getCurrentLanguage() === "ar" ? "ar-EG" : "en-US",
+            {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true
+            }
         );
 
+        spendingCard.innerHTML = `
+            <div class="spending-info">
+                <span class="spending-icon">${icon}</span>
 
-    editButtons.forEach(
-        function (button) {
+                <div>
+                    <h3>${escapeHTML(spending.name)}</h3>
+                    <p>${escapeHTML(categoryName)} · ${escapeHTML(time)}</p>
+                </div>
+            </div>
 
-            button.addEventListener(
-                "click",
-                function () {
+            <div class="spending-right">
+                <strong class="spending-amount">
+                    ${formatMoney(spending.amount)}
+                </strong>
 
-                    const index =
-                        Number(
-                            button.dataset.index
-                        );
+                <div class="spending-actions">
+                    <button
+                        class="edit-spending-btn"
+                        type="button"
+                        data-id="${escapeHTML(spending.id)}"
+                        aria-label="${getCurrentLanguage() === "ar" ? "تعديل المصروف" : "Edit spending"}"
+                        title="${getCurrentLanguage() === "ar" ? "تعديل" : "Edit"}">✏️</button>
 
+                    <button
+                        class="delete-spending-btn"
+                        type="button"
+                        data-id="${escapeHTML(spending.id)}"
+                        aria-label="${getCurrentLanguage() === "ar" ? "حذف المصروف" : "Delete spending"}"
+                        title="${getCurrentLanguage() === "ar" ? "حذف" : "Delete"}">🗑️</button>
+                </div>
+            </div>
+        `;
 
-                    editSpending(index);
+        spendingList.appendChild(spendingCard);
+    });
 
-                }
-            );
+    spendingList.querySelectorAll(".edit-spending-btn").forEach(function (button) {
+        button.addEventListener("click", function () {
+            editSpending(button.dataset.id);
+        });
+    });
 
-        }
-    );
-
-
-    /* =========================
-       Delete Buttons
-    ========================= */
-
-    const deleteButtons =
-        document.querySelectorAll(
-            ".delete-spending-btn"
-        );
-
-
-    deleteButtons.forEach(
-        function (button) {
-
-            button.addEventListener(
-                "click",
-                function () {
-
-                    const index =
-                        Number(
-                            button.dataset.index
-                        );
-
-
-                    deleteSpending(index);
-
-                }
-            );
-
-        }
-    );
-
+    spendingList.querySelectorAll(".delete-spending-btn").forEach(function (button) {
+        button.addEventListener("click", function () {
+            deleteSpending(button.dataset.id);
+        });
+    });
 }
-
 
 /* =========================
    Edit Spending
 ========================= */
 
-function editSpending(index) {
+function editSpending(id) {
+    const spending = allSpending.find(function (item) {
+        return String(item.id) === String(id);
+    });
 
-    const spending =
-        todaySpending[index];
+    if (!spending) return;
 
+    editingSpendingId = id;
 
-    editingSpendingIndex =
-        index;
+    spendingNameInput.value = spending.name;
+    spendingAmountInput.value = spending.amount;
+    spendingCategoryInput.value = spending.category;
 
+    if (saveSpendingButton) {
+        saveSpendingButton.textContent = getText("updateSpending");
+    }
 
-    /* Fill Form */
-
-    spendingNameInput.value =
-        spending.name;
-
-    spendingAmountInput.value =
-        spending.amount;
-
-    spendingCategoryInput.value =
-        spending.category;
-
-
-    /* Change Button */
-
-    saveSpendingButton.textContent =
-        getText("updateSpending");
-
-
-    /* Open Modal */
-
-    spendingModal.classList.add(
-        "show"
-    );
-
+    openModal(spendingModal);
 }
-
 
 /* =========================
    Delete Spending
 ========================= */
 
-function deleteSpending(index) {
-
-    deletingSpendingIndex =
-        index;
-
-
-    deleteModal.classList.add(
-        "show"
-    );
-
+function deleteSpending(id) {
+    deletingSpendingId = id;
+    openModal(deleteModal);
 }
 
+if (deleteCancelButton) {
+    deleteCancelButton.addEventListener("click", function () {
+        closeModal(deleteModal);
+        deletingSpendingId = null;
+    });
+}
+
+if (deleteConfirmButton) {
+    deleteConfirmButton.addEventListener("click", function () {
+        if (deletingSpendingId === null) return;
+
+        allSpending = allSpending.filter(function (item) {
+            return String(item.id) !== String(deletingSpendingId);
+        });
+
+        saveSpendingRecords();
+        displaySpending();
+        updateDailySummary();
+
+        closeModal(deleteModal);
+        deletingSpendingId = null;
+
+        showSuccessToast(getText("spendingDeleted"));
+    });
+}
 
 /* =========================
-   Cancel Delete
+   Delete Budget Confirmation
 ========================= */
 
-deleteCancelButton.addEventListener(
-    "click",
-    function () {
+function openBudgetDeleteModal(type) {
+    deletingBudgetType = type;
 
-        deleteModal.classList.remove(
-            "show"
-        );
-
-        deletingSpendingIndex =
-            null;
-
+    if (budgetDeleteMessage) {
+        budgetDeleteMessage.textContent = type === "monthly"
+            ? getText("deleteMonthlyBudgetMessage")
+            : getText("deleteDailyBudgetMessage");
     }
-);
 
+    openModal(budgetDeleteModal);
+}
 
-/* =========================
-   Confirm Delete
-========================= */
-
-deleteConfirmButton.addEventListener(
-    "click",
-    function () {
-
-        if (
-            deletingSpendingIndex === null
-        ) {
+/* Delete Monthly Budget Button */
+if (deleteMonthlyBudgetButton) {
+    deleteMonthlyBudgetButton.addEventListener("click", function () {
+        if (monthlyBudget === null) {
+            showSuccessToast(
+                getCurrentLanguage() === "ar"
+                    ? "مفيش ميزانية شهرية محددة لحذفها."
+                    : "There is no monthly budget to delete."
+            );
 
             return;
-
         }
 
+        openBudgetDeleteModal("monthly");
+    });
+}
 
-        /* Delete Spending */
+/* Delete Daily Budget Button */
+if (deleteDailyBudgetButton) {
+    deleteDailyBudgetButton.addEventListener("click", function () {
+        if (dailyBudget === null) {
+            showSuccessToast(
+                getCurrentLanguage() === "ar"
+                    ? "مفيش ميزانية يومية محددة لحذفها."
+                    : "There is no daily budget to delete."
+            );
 
-        todaySpending.splice(
-            deletingSpendingIndex,
-            1
-        );
+            return;
+        }
 
+        openBudgetDeleteModal("daily");
+    });
+}
 
-        saveSpending();
+/* Cancel Budget Deletion */
+if (budgetDeleteCancelButton) {
+    budgetDeleteCancelButton.addEventListener("click", function () {
+        closeModal(budgetDeleteModal);
+        deletingBudgetType = null;
+    });
+}
 
+/* Confirm Budget Deletion */
+if (budgetDeleteConfirmButton) {
+    budgetDeleteConfirmButton.addEventListener("click", function () {
+        if (deletingBudgetType === "monthly") {
+            delete monthlyBudgets[getCurrentMonthKey()];
 
-        /* Update Spending List */
+            localStorage.setItem(
+                "spendlyMonthlyBudgets",
+                JSON.stringify(monthlyBudgets)
+            );
 
-        displaySpending();
+            monthlyBudget = null;
 
+        } else if (deletingBudgetType === "daily") {
+            dailyBudget = null;
 
-        /* Update Summary */
+            localStorage.removeItem("spendlyDailyBudget");
+        } else {
+            return;
+        }
+
+        /*
+         * Only the budget is deleted.
+         * Existing spending records are never removed here.
+         */
 
         updateDailySummary();
 
+        closeModal(budgetDeleteModal);
+        deletingBudgetType = null;
 
-        /* Close Delete Modal */
-
-        deleteModal.classList.remove(
-            "show"
-        );
-
-
-        /* Reset Delete State */
-
-        deletingSpendingIndex =
-            null;
-
-
-        /* Show Success Toast */
-
-        showSuccessToast(
-            getText("spendingDeleted")
-        );
-
-    }
-);
-
+        showSuccessToast(getText("budgetDeleted"));
+    });
+}
 
 /* =========================
-   Update Daily Summary
+   Update Budget Summaries
 ========================= */
 
 function updateDailySummary() {
+    /*
+     * Recheck the date and month so that opening the page on a new day
+     * or month loads the correct budgets.
+     */
 
-    let totalSpent = 0;
+    const currentMonth = getCurrentMonthKey();
+    const currentDate = getCurrentDateKey();
 
-
-    /* Calculate Total Spending */
-
-    todaySpending.forEach(
-        function (spending) {
-
-            totalSpent +=
-                spending.amount;
-
-        }
-    );
-
-
-    /* Update Spent Today */
-
-    spentTodayElement.textContent =
-        `${totalSpent.toLocaleString()} EGP`;
-
-
-    /* =========================
-       Update Daily Message
-    ========================= */
-
-    if (totalSpent === 0) {
-
-        dailyMessageText.textContent =
-            getText("noSpending");
-
+    if (
+        typeof lastLoadedMonthKey !== "undefined" &&
+        lastLoadedMonthKey !== currentMonth
+    ) {
+        loadMonthlyBudget();
     }
 
-    else if (dailyBudget === null) {
-
-        dailyMessageText.textContent =
-            getText("noBudget");
-
+    if (
+        typeof lastLoadedDateKey !== "undefined" &&
+        lastLoadedDateKey !== currentDate
+    ) {
+        loadDailyBudget();
     }
 
-    else {
+    const todaySpending = getTodaySpending();
 
-        const spendingPercentage =
-            (totalSpent / dailyBudget) * 100;
+    const totalSpentToday = todaySpending.reduce(function (total, spending) {
+        return total + Number(spending.amount || 0);
+    }, 0);
 
-
-        if (spendingPercentage >= 100) {
-
-            dailyMessageText.textContent =
-                getText("reachedBudget");
-
-        }
-
-        else if (spendingPercentage >= 80) {
-
-            dailyMessageText.textContent =
-                getText("closeToBudget");
-
-        }
-
-        else if (spendingPercentage >= 50) {
-
-            dailyMessageText.textContent =
-                getText("usedHalfBudget");
-
-        }
-
-        else {
-
-            dailyMessageText.textContent =
-                getText("noBudget");
-
-        }
-
-    }
-
-
-    /* =========================
-       Update Remaining Budget
-    ========================= */
-
-    if (dailyBudget === null) {
-
-        remainingBudgetElement.textContent =
-            "—";
-
-        return;
-
-    }
-
-
-    const remaining =
-        dailyBudget - totalSpent;
-
-
-    remainingBudgetElement.textContent =
-        `${remaining.toLocaleString()} EGP`;
-
-}
-
-
-/* =========================
-   Refresh After Language Change
-========================= */
-
-window.addEventListener(
-    "languageChanged",
-    function () {
-
-        displaySpending();
-
-        updateDailySummary();
+    const totalSpentThisMonth = allSpending.reduce(function (total, spending) {
+        const spendingDate = new Date(spending.date);
 
         if (
-            editingSpendingIndex !== null
+            !Number.isNaN(spendingDate.getTime()) &&
+            getMonthKey(spendingDate) === currentMonth
         ) {
-
-            saveSpendingButton.textContent =
-                getText("updateSpending");
-
-        } else {
-
-            saveSpendingButton.textContent =
-                getText("saveSpending");
-
+            return total + Number(spending.amount || 0);
         }
 
-    }
-);
+        return total;
+    }, 0);
 
+    /* Today's Budget */
+    if (dailyBudgetElement) {
+        dailyBudgetElement.textContent = dailyBudget === null
+            ? getText("notSet")
+            : formatMoney(dailyBudget);
+    }
+
+    /* Spent Today */
+    if (spentTodayElement) {
+        spentTodayElement.textContent = formatMoney(totalSpentToday);
+    }
+
+    /* Today's Remaining */
+    if (remainingBudgetElement) {
+        remainingBudgetElement.textContent = dailyBudget === null
+            ? "—"
+            : formatMoney(dailyBudget - totalSpentToday);
+    }
+
+    /* Monthly Budget */
+    if (monthlyBudgetElement) {
+        monthlyBudgetElement.textContent = monthlyBudget === null
+            ? getText("noMonthlyBudget")
+            : formatMoney(monthlyBudget);
+    }
+
+    /*
+     * Monthly balance calculation:
+     *
+     * Monthly budget
+     * - all actual spending this month
+     * - full daily budget reserved for today
+     *
+     * Example:
+     * Monthly budget: 30,000 EGP
+     * Daily budget:    2,000 EGP
+     * Spent today:     1,700 EGP
+     *
+     * Monthly remaining: 28,000 EGP
+     *
+     * When tomorrow starts, today's unused 300 EGP is released.
+     */
+
+    const reservedForToday = dailyBudget === null ? 0 : dailyBudget;
+
+    const monthlyRemaining =
+        monthlyBudget === null
+            ? null
+            : monthlyBudget - totalSpentThisMonth - reservedForToday;
+
+    if (monthlyRemainingElement) {
+        monthlyRemainingElement.textContent = monthlyRemaining === null
+            ? "—"
+            : formatMoney(monthlyRemaining);
+    }
+
+    /* Daily Spending Message */
+    if (dailyMessageText) {
+        if (totalSpentToday === 0) {
+            dailyMessageText.textContent = getText("noSpending");
+
+        } else if (dailyBudget === null) {
+            dailyMessageText.textContent = getText("noBudget");
+
+        } else {
+            const percentage = (totalSpentToday / dailyBudget) * 100;
+
+            if (percentage >= 100) {
+                dailyMessageText.textContent = getText("reachedBudget");
+
+            } else if (percentage >= 80) {
+                dailyMessageText.textContent = getText("closeToBudget");
+
+            } else if (percentage >= 50) {
+                dailyMessageText.textContent = getText("usedHalfBudget");
+
+            } else {
+                dailyMessageText.textContent = getText("noBudget");
+            }
+        }
+    }
+}
+
+/* Track Last Loaded Date and Month */
+let lastLoadedDateKey = getCurrentDateKey();
+let lastLoadedMonthKey = getCurrentMonthKey();
+
+/* =========================
+   Language Change
+========================= */
+
+window.addEventListener("languageChanged", function () {
+    displaySpending();
+    updateDailySummary();
+
+    if (saveSpendingButton) {
+        saveSpendingButton.textContent = editingSpendingId !== null
+            ? getText("updateSpending")
+            : getText("saveSpending");
+    }
+
+    if (budgetDeleteMessage && deletingBudgetType) {
+        budgetDeleteMessage.textContent = deletingBudgetType === "monthly"
+            ? getText("deleteMonthlyBudgetMessage")
+            : getText("deleteDailyBudgetMessage");
+    }
+});
 
 /* =========================
    Initial Display
 ========================= */
 
 displaySpending();
-
 updateDailySummary();

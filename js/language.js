@@ -67,11 +67,10 @@ const translations = {
         footerTagline: "Spend smart. Live better. ✨",
         footerCopyright: "© 2026 Spendly. All rights reserved.",
 
-
         /* ===== Login ===== */
 
         loginEyebrow: "WELCOME BACK",
-        loginTitle: "Let's log you in! ✨",
+        loginTitle: "Let's get you logged in! ✨",
         loginSubtitle: "Your money journey continues here.",
 
         loginEmailLabel: "Email address",
@@ -107,7 +106,6 @@ const translations = {
         loginSuccess:
             "Login successful! Opening your dashboard...",
 
-
         /* ===== Daily ===== */
 
         pageLabel: "YOUR DAY",
@@ -116,7 +114,7 @@ const translations = {
 
         budget: "Today's Budget",
         spent: "Spent Today",
-        remaining: "Remaining",
+        remaining: "Today's Remaining",
 
         notSet: "Not set",
         setBudget: "+ Set Today's Budget",
@@ -161,6 +159,44 @@ const translations = {
         closeToBudget: "Careful! You're getting close to your daily budget. ⚠️",
         usedHalfBudget: "You've used 50% of your daily budget. 👀",
 
+        /* ===== My Money & Monthly Budget ===== */
+
+        yourMoney: "YOUR MONEY",
+        myMoney: "My Money 💰",
+        moneySubtitle: "Keep track of your monthly budget and daily spending.",
+
+        monthlyBudget: "Monthly Budget",
+        monthlyRemaining: "Monthly Remaining",
+
+        viewReport: "📊 View Report",
+
+        setMonthlyBudget: "Set Your Monthly Budget",
+        editMonthlyBudget: "Edit monthly budget",
+        deleteMonthlyBudget: "Delete monthly budget",
+
+        monthlyBudgetQuestion:
+            "How much money do you have for this month?",
+
+        monthlyBudgetPlaceholder: "e.g. 23000",
+
+        saveMonthlyBudget: "Save Monthly Budget",
+        noMonthlyBudget: "Not set",
+
+        editDailyBudget: "Edit today's budget",
+        deleteDailyBudget: "Delete today's budget",
+
+        deleteBudgetTitle: "Delete budget?",
+
+        deleteMonthlyBudgetMessage:
+            "Are you sure you want to remove your monthly budget? Your spending records will stay saved.",
+
+        deleteDailyBudgetMessage:
+            "Are you sure you want to remove today's budget? Your spending records will stay saved.",
+
+        budgetDeleted: "Budget removed successfully!",
+
+        budgetDeleteConfirm: "Yes, Delete",
+        budgetDeleteCancel: "Cancel",
 
         /* ===== Signup ===== */
 
@@ -180,7 +216,6 @@ const translations = {
         alreadyHaveAccount: "Already have an account?",
         login: "Log in",
 
-
         /* ===== Categories ===== */
 
         categories: {
@@ -192,7 +227,6 @@ const translations = {
             Health: "💊 Health",
             Other: "📦 Other"
         }
-
     },
 
 
@@ -251,7 +285,6 @@ const translations = {
         footerTagline: "اصرفي بذكاء. عيشي أحسن. ✨",
         footerCopyright: "© 2026 Spendly. جميع الحقوق محفوظة.",
 
-
         /* ===== Login ===== */
 
         loginEyebrow: "نورتي من جديد",
@@ -291,7 +324,6 @@ const translations = {
         loginSuccess:
             "تم تسجيل الدخول بنجاح! جاري فتح لوحة التحكم...",
 
-
         /* ===== Daily ===== */
 
         pageLabel: "يومك",
@@ -300,7 +332,7 @@ const translations = {
 
         budget: "ميزانية اليوم",
         spent: "مصروفات اليوم",
-        remaining: "المتبقي",
+        remaining: "المتبقي من ميزانية اليوم",
 
         notSet: "لم يتم تحديدها",
         setBudget: "+ تحديد ميزانية اليوم",
@@ -331,20 +363,58 @@ const translations = {
             "متأكدة إنك عايزة تحذفي المصروف ده؟ مش هتقدري ترجعيه بعد كده.",
 
         deleteCancel: "إلغاء",
-        deleteConfirm: "نعم، احذف",
+        deleteConfirm: "أيوه، احذف",
 
         spendingAdded: "تمت إضافة المصروف بنجاح!",
         spendingUpdated: "تم تعديل المصروف بنجاح!",
         spendingDeleted: "تم حذف المصروف بنجاح!",
 
         emptySpending: "لم تضيفي أي مصروفات اليوم.",
-        noSpending: "لم تضيفي أي مصروفات حتى الآن. 💰",
+        noSpending: "لسه مضفتيش أي مصروفات. 💰",
 
         noBudget: "أداؤك رائع! استمري في تسجيل مصروفاتك. 💸",
-        reachedBudget: "لقد وصلتي إلى ميزانية اليوم! 🚨",
+        reachedBudget: "وصلتي لميزانية اليوم! 🚨",
         closeToBudget: "خلي بالك! إنتِ قربتي من ميزانية اليوم. ⚠️",
-        usedHalfBudget: "لقد استخدمتي 50% من ميزانية اليوم. 👀",
+        usedHalfBudget: "استخدمتي 50% من ميزانية اليوم. 👀",
 
+        /* ===== My Money & Monthly Budget ===== */
+
+        yourMoney: "فلوسك",
+        myMoney: "فلوسي 💰",
+        moneySubtitle: "تابعي ميزانيتك الشهرية ومصروفاتك اليومية.",
+
+        monthlyBudget: "الميزانية الشهرية",
+        monthlyRemaining: "المتبقي من الميزانية الشهرية",
+
+        viewReport: "📊 عرض التقارير",
+
+        setMonthlyBudget: "تحديد الميزانية الشهرية",
+        editMonthlyBudget: "تعديل الميزانية الشهرية",
+        deleteMonthlyBudget: "حذف الميزانية الشهرية",
+
+        monthlyBudgetQuestion:
+            "معاكي كام جنيه للشهر ده؟",
+
+        monthlyBudgetPlaceholder: "مثال: 23000",
+
+        saveMonthlyBudget: "حفظ الميزانية الشهرية",
+        noMonthlyBudget: "لم يتم تحديدها",
+
+        editDailyBudget: "تعديل ميزانية اليوم",
+        deleteDailyBudget: "حذف ميزانية اليوم",
+
+        deleteBudgetTitle: "حذف الميزانية؟",
+
+        deleteMonthlyBudgetMessage:
+            "متأكدة إنك عايزة تحذفي الميزانية الشهرية؟ مصروفاتك المسجلة هتفضل موجودة.",
+
+        deleteDailyBudgetMessage:
+            "متأكدة إنك عايزة تلغي ميزانية اليوم؟ مصروفاتك المسجلة هتفضل موجودة.",
+
+        budgetDeleted: "تم حذف الميزانية بنجاح!",
+
+        budgetDeleteConfirm: "أيوه، احذف",
+        budgetDeleteCancel: "إلغاء",
 
         /* ===== Signup ===== */
 
@@ -364,7 +434,6 @@ const translations = {
         alreadyHaveAccount: "عندك حساب بالفعل؟",
         login: "تسجيل الدخول",
 
-
         /* ===== Categories ===== */
 
         categories: {
@@ -376,7 +445,6 @@ const translations = {
             Health: "💊 صحة",
             Other: "📦 أخرى"
         }
-
     }
 
 };
@@ -387,10 +455,11 @@ const translations = {
 ========================= */
 
 function translate(key) {
+
     const selectedLanguage =
         translations[savedLanguage] || translations.en;
 
-    return selectedLanguage[key] ?? key;
+    return selectedLanguage[key] ?? translations.en[key] ?? key;
 }
 
 
@@ -400,13 +469,9 @@ function translate(key) {
 
 function applyLanguage(language) {
 
-    savedLanguage =
-        translations[language] ? language : "en";
+    savedLanguage = translations[language] ? language : "en";
 
-    const selectedLanguage =
-        translations[savedLanguage];
-
-    /* Page direction */
+    const selectedLanguage = translations[savedLanguage];
 
     document.documentElement.lang = savedLanguage;
 
@@ -414,16 +479,23 @@ function applyLanguage(language) {
         savedLanguage === "ar" ? "rtl" : "ltr";
 
 
-    /* Page title */
+    /* Page Title */
 
     if (document.body.classList.contains("login-page")) {
+
         document.title = savedLanguage === "ar"
             ? "تسجيل الدخول | Spendly"
             : "Login | Spendly";
+
+    } else if (document.querySelector('[data-i18n="myMoney"]')) {
+
+        document.title = savedLanguage === "ar"
+            ? "فلوسي | Spendly"
+            : "My Money | Spendly";
     }
 
 
-    /* Translate regular elements */
+    /* Translate Text */
 
     document.querySelectorAll("[data-i18n]").forEach(element => {
 
@@ -433,11 +505,10 @@ function applyLanguage(language) {
         if (typeof value === "string") {
             element.textContent = value;
         }
-
     });
 
 
-    /* Translate placeholders */
+    /* Translate Placeholders */
 
     document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
 
@@ -447,11 +518,10 @@ function applyLanguage(language) {
         if (typeof value === "string") {
             element.placeholder = value;
         }
-
     });
 
 
-    /* Translate accessible labels */
+    /* Translate Accessible Labels */
 
     document.querySelectorAll("[data-i18n-aria]").forEach(element => {
 
@@ -461,16 +531,25 @@ function applyLanguage(language) {
         if (typeof value === "string") {
             element.setAttribute("aria-label", value);
         }
-
     });
 
 
-    /* =========================
-       Daily Categories
-    ========================= */
+    /* Translate Accessible Titles */
 
-    const categorySelect =
-        document.querySelector("#spending-category");
+    document.querySelectorAll("[data-i18n-title]").forEach(element => {
+
+        const key = element.dataset.i18nTitle;
+        const value = selectedLanguage[key];
+
+        if (typeof value === "string") {
+            element.setAttribute("title", value);
+        }
+    });
+
+
+    /* Translate Categories */
+
+    const categorySelect = document.querySelector("#spending-category");
 
     if (categorySelect) {
 
@@ -483,24 +562,16 @@ function applyLanguage(language) {
             if (categories && categories[category]) {
                 option.textContent = categories[category];
             }
-
         });
-
     }
 
 
-    /* =========================
-       Daily Placeholders
-    ========================= */
+    /* Translate Spending Placeholders */
 
-    const spendingName =
-        document.querySelector("#spending-name");
-
-    const spendingAmount =
-        document.querySelector("#spending-amount");
-
-    const budgetAmount =
-        document.querySelector("#budget-amount");
+    const spendingName = document.querySelector("#spending-name");
+    const spendingAmount = document.querySelector("#spending-amount");
+    const budgetAmount = document.querySelector("#budget-amount");
+    const monthlyBudgetAmount = document.querySelector("#monthly-budget-amount");
 
     if (spendingName) {
         spendingName.placeholder = savedLanguage === "ar"
@@ -520,10 +591,14 @@ function applyLanguage(language) {
             : "e.g. 1000";
     }
 
+    if (monthlyBudgetAmount) {
+        monthlyBudgetAmount.placeholder = savedLanguage === "ar"
+            ? "مثال: 23000"
+            : "e.g. 23000";
+    }
 
-    /* =========================
-       Signup Placeholders
-    ========================= */
+
+    /* Signup Placeholders */
 
     const signupForm =
         document.querySelector("#signup-form") ||
@@ -552,20 +627,15 @@ function applyLanguage(language) {
                 ? "اعملي كلمة مرور"
                 : "Create a password";
         }
-
     }
 
 
-    /* =========================
-       Language Button
-    ========================= */
+    /* Update Language Button */
 
     updateLanguageButton(savedLanguage);
 
 
-    /* =========================
-       Refresh Daily Content
-    ========================= */
+    /* Refresh Daily Content */
 
     if (typeof displaySpending === "function") {
         displaySpending();
@@ -576,14 +646,9 @@ function applyLanguage(language) {
     }
 
 
-    /* =========================
-       Notify Other Scripts
-    ========================= */
+    /* Notify Other Scripts */
 
-    window.dispatchEvent(
-        new Event("languageChanged")
-    );
-
+    window.dispatchEvent(new Event("languageChanged"));
 }
 
 
@@ -593,10 +658,7 @@ function applyLanguage(language) {
 
 function createLanguageButton() {
 
-    let button =
-        document.querySelector("#language-toggle");
-
-    /* Reuse the button already present in HTML */
+    let button = document.querySelector("#language-toggle");
 
     if (!button) {
 
@@ -607,10 +669,7 @@ function createLanguageButton() {
         button.classList.add("language-toggle-dynamic");
 
         document.body.appendChild(button);
-
     }
-
-    /* Avoid attaching duplicate listeners */
 
     if (button.dataset.languageReady === "true") {
         updateLanguageButton(savedLanguage);
@@ -621,24 +680,18 @@ function createLanguageButton() {
 
     button.addEventListener("click", function () {
 
-        const newLanguage =
-            savedLanguage === "en" ? "ar" : "en";
+        const newLanguage = savedLanguage === "en" ? "ar" : "en";
 
         try {
-            localStorage.setItem(
-                "spendlyLanguage",
-                newLanguage
-            );
+            localStorage.setItem("spendlyLanguage", newLanguage);
         } catch (error) {
             // Language switching still works on this page.
         }
 
         applyLanguage(newLanguage);
-
     });
 
     updateLanguageButton(savedLanguage);
-
 }
 
 
@@ -648,8 +701,7 @@ function createLanguageButton() {
 
 function updateLanguageButton(language) {
 
-    const button =
-        document.querySelector("#language-toggle");
+    const button = document.querySelector("#language-toggle");
 
     if (!button) return;
 
@@ -664,9 +716,7 @@ function updateLanguageButton(language) {
         button.textContent = "🇬🇧 EN";
         button.title = "Switch to English";
         button.setAttribute("aria-label", "Switch to English");
-
     }
-
 }
 
 
@@ -687,73 +737,47 @@ function addLanguageStyles() {
     style.textContent = `
 
         #language-toggle.language-toggle-dynamic {
-
             position: fixed;
             top: 25px;
             left: 25px;
             z-index: 9999;
-
             border: none;
             background: #ffffff;
             color: #2f3437;
-
             padding: 10px 15px;
             border-radius: 12px;
-
             font-family: "Original Surfer", cursive;
             font-size: 13px;
-
             cursor: pointer;
-
-            box-shadow:
-                0 6px 20px rgba(47, 52, 55, 0.08);
-
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease,
-                background 0.4s ease,
-                color 0.4s ease;
-
+            box-shadow: 0 6px 20px rgba(47, 52, 55, 0.08);
+            transition: transform 0.2s ease,
+                        box-shadow 0.2s ease,
+                        background 0.4s ease,
+                        color 0.4s ease;
         }
 
         #language-toggle.language-toggle-dynamic:hover {
-
             transform: translateY(-2px);
-
-            box-shadow:
-                0 9px 25px rgba(47, 52, 55, 0.12);
-
+            box-shadow: 0 9px 25px rgba(47, 52, 55, 0.12);
         }
 
-        body.night-mode
-        #language-toggle.language-toggle-dynamic {
-
+        body.night-mode #language-toggle.language-toggle-dynamic {
             background: #242630;
             color: #eee8dc;
-
-            box-shadow:
-                0 6px 20px rgba(0, 0, 0, 0.25);
-
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
         }
 
         @media (max-width: 600px) {
-
             #language-toggle.language-toggle-dynamic {
-
                 top: 15px;
                 left: 15px;
-
                 padding: 8px 12px;
                 font-size: 12px;
-
             }
-
         }
-
     `;
 
     document.head.appendChild(style);
-
 }
 
 
@@ -764,11 +788,8 @@ function addLanguageStyles() {
 function startLanguageSystem() {
 
     createLanguageButton();
-
     addLanguageStyles();
-
     applyLanguage(savedLanguage);
-
 }
 
 if (document.readyState === "loading") {
@@ -781,7 +802,6 @@ if (document.readyState === "loading") {
 } else {
 
     startLanguageSystem();
-
 }
 
 
@@ -802,7 +822,6 @@ window.spendlySetLanguage = function (language) {
     }
 
     applyLanguage(language);
-
 };
 
 window.spendlyGetLanguage = function () {

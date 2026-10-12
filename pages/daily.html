@@ -1,553 +1,394 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Money | Spendly</title>
 
-    <title>Daily | Spendly</title>
-
-    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap" rel="stylesheet">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap"
-        rel="stylesheet"
-    >
-
-    <!-- Favicon -->
-
-<link rel="icon" type="image/png" href="../assets/Spendly%20Wallet%20Logo.png">
-
-
-    <!-- CSS -->
+    <link rel="icon" type="image/png" href="../assets/Spendly%20Wallet%20Logo.png">
     <link rel="stylesheet" href="../css/theme.css">
     <link rel="stylesheet" href="../css/daily.css">
-
 </head>
-
-
 <body>
 
     <main class="daily-container">
 
         <!-- Page Header -->
         <section class="daily-header">
-
             <div>
-
-                <p class="page-label" data-i18n="pageLabel">
-                    YOUR DAY
+                <p class="page-label" data-i18n="yourMoney">YOUR MONEY</p>
+                <h1 data-i18n="myMoney">My Money 💰</h1>
+                <p class="page-subtitle" data-i18n="moneySubtitle">
+                    Keep track of your monthly budget and daily spending.
                 </p>
+            </div>
+        </section>
 
-                <h1 data-i18n="title">
-                    Today's Spending 💸
-                </h1>
+        <!-- Monthly Summary -->
+        <section class="daily-summary monthly-summary">
 
-                <p class="page-subtitle" data-i18n="subtitle">
-                    Keep track of what you spend today.
-                </p>
+            <div class="daily-card">
+                <div class="budget-title-row">
+                    <p data-i18n="monthlyBudget">Monthly Budget</p>
 
+                    <div class="budget-icon-actions">
+                        <button type="button" class="icon-btn"
+                            id="edit-monthly-budget-btn"
+                            data-i18n-aria="editMonthlyBudget"
+                            data-i18n-title="editMonthlyBudget">✏️</button>
+
+                        <button type="button" class="icon-btn delete-budget-icon"
+                            id="delete-monthly-budget-btn"
+                            data-i18n-aria="deleteMonthlyBudget"
+                            data-i18n-title="deleteMonthlyBudget">🗑️</button>
+                    </div>
+                </div>
+
+                <h2 id="monthly-budget" data-i18n="noMonthlyBudget">Not set</h2>
+            </div>
+
+            <div class="daily-card">
+                <p data-i18n="monthlyRemaining">Monthly Remaining</p>
+                <h2 id="monthly-remaining">—</h2>
             </div>
 
         </section>
 
+        <!-- Report Link -->
+        <section class="budget-section monthly-actions">
+            <a href="report.html" class="budget-btn report-btn"
+                data-i18n="viewReport">📊 View Report</a>
+        </section>
 
-        <!-- Budget Summary -->
+        <!-- Today's Summary -->
         <section class="daily-summary">
 
             <div class="daily-card">
+                <div class="budget-title-row">
+                    <p data-i18n="budget">Today's Budget</p>
 
-                <p data-i18n="budget">
-                    Today's Budget
-                </p>
+                    <div class="budget-icon-actions">
+                        <button type="button" class="icon-btn"
+                            id="edit-daily-budget-btn"
+                            data-i18n-aria="editDailyBudget"
+                            data-i18n-title="editDailyBudget">✏️</button>
 
-                <h2 id="daily-budget">
-                    Not set
-                </h2>
+                        <button type="button" class="icon-btn delete-budget-icon"
+                            id="delete-daily-budget-btn"
+                            data-i18n-aria="deleteDailyBudget"
+                            data-i18n-title="deleteDailyBudget">🗑️</button>
+                    </div>
+                </div>
 
+                <h2 id="daily-budget" data-i18n="notSet">Not set</h2>
             </div>
 
-
             <div class="daily-card">
-
-                <p data-i18n="spent">
-                    Spent Today
-                </p>
-
-                <h2 id="spent-today">
-                    0 EGP
-                </h2>
-
+                <p data-i18n="spent">Spent Today</p>
+                <h2 id="spent-today">0 EGP</h2>
             </div>
 
-
             <div class="daily-card">
-
-                <p data-i18n="remaining">
-                    Remaining
-                </p>
-
-                <h2 id="remaining-budget">
-                    —
-                </h2>
-
+                <p data-i18n="remaining">Today's Remaining</p>
+                <h2 id="remaining-budget">—</h2>
             </div>
 
         </section>
 
-
-        <!-- Budget Action -->
+        <!-- Daily Budget Action -->
         <section class="budget-section">
-
-            <button
-                type="button"
-                class="budget-btn"
-                id="set-budget-btn"
-                data-i18n="setBudget"
-            >
-                + Set Today's Budget
-            </button>
-
+            <button type="button" class="budget-btn" id="set-budget-btn"
+                data-i18n="setBudget">+ Set Today's Budget</button>
         </section>
-
 
         <!-- Daily Message -->
-        <section
-            class="daily-message"
-            id="daily-message"
-        >
-
-            <span class="message-icon">
-                💰
-            </span>
-
-            <p id="daily-message-text">
-                You haven't added any spending yet.
+        <section class="daily-message" id="daily-message">
+            <span class="message-icon">💰</span>
+            <p id="daily-message-text" data-i18n="noSpending">
+                You haven't added any spending yet. 💰
             </p>
-
         </section>
-
 
         <!-- Today's Spending -->
         <section class="today-spending-section">
 
             <div class="section-header">
-
                 <div>
-
-                    <p
-                        class="page-label"
-                        data-i18n="today"
-                    >
-                        TODAY
-                    </p>
-
-                    <h2 data-i18n="todaySpending">
-                        Today's Spending
-                    </h2>
-
+                    <p class="page-label" data-i18n="today">TODAY</p>
+                    <h2 data-i18n="todaySpending">Today's Spending</h2>
                 </div>
 
-
-                <button
-                    type="button"
-                    class="add-spending-btn"
-                    id="add-spending-btn"
-                    data-i18n="addSpending"
-                >
+                <button type="button" class="add-spending-btn"
+                    id="add-spending-btn" data-i18n="addSpending">
                     + Add Spending
                 </button>
-
             </div>
 
-
-            <!-- Spending List -->
-            <div
-                class="spending-list"
-                id="spending-list"
-            >
-
-                <!-- Spending items will be added here -->
-
-            </div>
+            <div class="spending-list" id="spending-list"></div>
 
         </section>
 
     </main>
 
 
-    <!-- =========================
-         Add Spending Modal
-    ========================= -->
-
-    <div
-        class="spending-modal"
-        id="spending-modal"
-    >
-
-        <div class="spending-modal-content">
-
-            <div class="modal-header">
-
-                <div>
-
-                    <p
-                        class="page-label"
-                        data-i18n="newSpending"
-                    >
-                        NEW SPENDING
-                    </p>
-
-                    <h2 data-i18n="addSpendingTitle">
-                        Add spending
-                    </h2>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="close-modal"
-                    id="close-modal"
-                >
-                    ×
-                </button>
-
-            </div>
-
-
-            <form id="spending-form">
-
-                <!-- Spending Name -->
-                <div class="form-group">
-
-                    <label
-                        for="spending-name"
-                        data-i18n="spendingQuestion"
-                    >
-                        What did you spend on?
-                    </label>
-
-                    <input
-                        type="text"
-                        id="spending-name"
-                        placeholder="e.g. Lunch"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- Amount -->
-                <div class="form-group">
-
-                    <label
-                        for="spending-amount"
-                        data-i18n="amount"
-                    >
-                        Amount
-                    </label>
-
-                    <input
-                        type="number"
-                        id="spending-amount"
-                        placeholder="e.g. 250"
-                        min="0"
-                        step="0.01"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- Category -->
-                <div class="form-group">
-
-                    <label
-                        for="spending-category"
-                        data-i18n="category"
-                    >
-                        Category
-                    </label>
-
-                    <select
-                        id="spending-category"
-                        required
-                    >
-
-                        <option
-                            value=""
-                            data-i18n="chooseCategory"
-                        >
-                            Choose a category
-                        </option>
-
-                        <option value="Food">
-                            🍔 Food
-                        </option>
-
-                        <option value="Transportation">
-                            🚕 Transportation
-                        </option>
-
-                        <option value="Shopping">
-                            🛒 Shopping
-                        </option>
-
-                        <option value="Bills">
-                            💡 Bills
-                        </option>
-
-                        <option value="Entertainment">
-                            🎬 Entertainment
-                        </option>
-
-                        <option value="Health">
-                            💊 Health
-                        </option>
-
-                        <option value="Other">
-                            📦 Other
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- Modal Actions -->
-                <div class="modal-actions">
-
-                    <button
-                        type="button"
-                        class="cancel-btn"
-                        id="cancel-modal"
-                        data-i18n="cancel"
-                    >
-                        Cancel
-                    </button>
-
-
-                    <button
-                        type="submit"
-                        class="save-spending-btn"
-                        data-i18n="saveSpending"
-                    >
-                        Add Spending
-                    </button>
-
-                </div>
-
-            </form>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         Budget Modal
-    ========================= -->
-
-    <div
-        class="budget-modal"
-        id="budget-modal"
-    >
-
+    <!-- Monthly Budget Modal -->
+    <div class="budget-modal" id="monthly-budget-modal">
         <div class="budget-modal-content">
 
             <div class="modal-header">
-
                 <div>
+                    <p class="page-label" data-i18n="monthlyBudget">
+                        MONTHLY BUDGET
+                    </p>
 
-                    <p
-                        class="page-label"
-                        data-i18n="dailyBudget"
-                    >
+                    <h2 data-i18n="setMonthlyBudget">
+                        Set Your Monthly Budget
+                    </h2>
+                </div>
+
+                <button type="button" class="close-budget-modal"
+                    id="close-monthly-budget-modal"
+                    aria-label="Close">×</button>
+            </div>
+
+            <form id="monthly-budget-form">
+
+                <div class="form-group">
+                    <label for="monthly-budget-amount"
+                        data-i18n="monthlyBudgetQuestion">
+                        How much money do you have for this month?
+                    </label>
+
+                    <input type="number"
+                        id="monthly-budget-amount"
+                        data-i18n-placeholder="monthlyBudgetPlaceholder"
+                        placeholder="e.g. 23000"
+                        min="0.01" step="0.01" required>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn"
+                        id="cancel-monthly-budget-modal"
+                        data-i18n="cancel">Cancel</button>
+
+                    <button type="submit" class="save-budget-btn"
+                        data-i18n="saveMonthlyBudget">
+                        Save Monthly Budget
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Add / Edit Spending Modal -->
+    <div class="spending-modal" id="spending-modal">
+        <div class="spending-modal-content">
+
+            <div class="modal-header">
+                <div>
+                    <p class="page-label" data-i18n="newSpending">NEW SPENDING</p>
+                    <h2 data-i18n="addSpendingTitle">Add spending</h2>
+                </div>
+
+                <button type="button" class="close-modal"
+                    id="close-modal" aria-label="Close">×</button>
+            </div>
+
+            <form id="spending-form">
+
+                <div class="form-group">
+                    <label for="spending-name" data-i18n="spendingQuestion">
+                        What did you spend on?
+                    </label>
+
+                    <input type="text" id="spending-name"
+                        placeholder="e.g. Lunch" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="spending-amount" data-i18n="amount">
+                        Amount
+                    </label>
+
+                    <input type="number" id="spending-amount"
+                        placeholder="e.g. 250"
+                        min="0.01" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="spending-category" data-i18n="category">
+                        Category
+                    </label>
+
+                    <select id="spending-category" required>
+                        <option value="" data-i18n="chooseCategory">
+                            Choose a category
+                        </option>
+                        <option value="Food">🍔 Food</option>
+                        <option value="Transportation">🚕 Transportation</option>
+                        <option value="Shopping">🛒 Shopping</option>
+                        <option value="Bills">💡 Bills</option>
+                        <option value="Entertainment">🎬 Entertainment</option>
+                        <option value="Health">💊 Health</option>
+                        <option value="Other">📦 Other</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn"
+                        id="cancel-modal" data-i18n="cancel">
+                        Cancel
+                    </button>
+
+                    <button type="submit" class="save-spending-btn"
+                        data-i18n="saveSpending">
+                        Add Spending
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Today's Budget Modal -->
+    <div class="budget-modal" id="budget-modal">
+        <div class="budget-modal-content">
+
+            <div class="modal-header">
+                <div>
+                    <p class="page-label" data-i18n="dailyBudget">
                         DAILY BUDGET
                     </p>
 
                     <h2 data-i18n="setTodaysBudget">
                         Set today's budget
                     </h2>
-
                 </div>
 
-
-                <button
-                    type="button"
-                    class="close-budget-modal"
+                <button type="button" class="close-budget-modal"
                     id="close-budget-modal"
-                >
-                    ×
-                </button>
-
+                    aria-label="Close">×</button>
             </div>
-
 
             <form id="budget-form">
 
                 <div class="form-group">
-
-                    <label
-                        for="budget-amount"
-                        data-i18n="budgetQuestion"
-                    >
+                    <label for="budget-amount" data-i18n="budgetQuestion">
                         How much can you spend today?
                     </label>
 
-                    <input
-                        type="number"
-                        id="budget-amount"
+                    <input type="number" id="budget-amount"
                         placeholder="e.g. 1000"
-                        min="0"
-                        step="0.01"
-                        required
-                    >
-
+                        min="0.01" step="0.01" required>
                 </div>
 
-
                 <div class="modal-actions">
-
-                    <button
-                        type="button"
-                        class="cancel-btn"
-                        id="cancel-budget-modal"
-                        data-i18n="cancel"
-                    >
+                    <button type="button" class="cancel-btn"
+                        id="cancel-budget-modal" data-i18n="cancel">
                         Cancel
                     </button>
 
-
-                    <button
-                        type="submit"
-                        class="save-budget-btn"
-                        data-i18n="setBudgetButton"
-                    >
+                    <button type="submit" class="save-budget-btn"
+                        data-i18n="setBudgetButton">
                         Set Budget
                     </button>
-
                 </div>
 
             </form>
-
         </div>
-
     </div>
 
 
-    <!-- =========================
-         Delete Confirmation Modal
-    ========================= -->
-
-    <div
-        class="delete-modal"
-        id="delete-modal"
-    >
-
+    <!-- Delete Spending Confirmation -->
+    <div class="delete-modal" id="delete-modal">
         <div class="delete-modal-content">
 
-            <div class="delete-icon">
-                🗑️
-            </div>
+            <div class="delete-icon">🗑️</div>
 
             <div class="delete-text">
-
-                <h2 data-i18n="deleteTitle">
-                    Delete spending?
-                </h2>
-
+                <h2 data-i18n="deleteTitle">Delete spending?</h2>
                 <p data-i18n="deleteMessage">
                     Are you sure you want to delete this spending?
                     This action can't be undone.
                 </p>
-
             </div>
 
-
             <div class="delete-actions">
-
-                <button
-                    type="button"
-                    class="delete-cancel-btn"
-                    id="delete-cancel-btn"
-                    data-i18n="deleteCancel"
-                >
+                <button type="button" class="delete-cancel-btn"
+                    id="delete-cancel-btn" data-i18n="deleteCancel">
                     Cancel
                 </button>
 
-
-                <button
-                    type="button"
-                    class="delete-confirm-btn"
-                    id="delete-confirm-btn"
-                    data-i18n="deleteConfirm"
-                >
+                <button type="button" class="delete-confirm-btn"
+                    id="delete-confirm-btn" data-i18n="deleteConfirm">
                     Yes, Delete
                 </button>
-
             </div>
 
         </div>
-
     </div>
 
 
-    <!-- =========================
-         Success Toast
-    ========================= -->
+    <!-- Delete Budget Confirmation -->
+    <div class="delete-modal" id="budget-delete-modal">
+        <div class="delete-modal-content">
 
-    <div
-        id="success-toast"
-        class="success-toast"
-    >
+            <div class="delete-icon">🗑️</div>
 
+            <div class="delete-text">
+                <h2 data-i18n="deleteBudgetTitle">Delete budget?</h2>
+                <p id="budget-delete-message"
+                    data-i18n="deleteMonthlyBudgetMessage">
+                    Are you sure you want to remove this budget?
+                    Your spending records will stay saved.
+                </p>
+            </div>
+
+            <div class="delete-actions">
+                <button type="button" class="delete-cancel-btn"
+                    id="budget-delete-cancel-btn"
+                    data-i18n="budgetDeleteCancel">Cancel</button>
+
+                <button type="button" class="delete-confirm-btn"
+                    id="budget-delete-confirm-btn"
+                    data-i18n="budgetDeleteConfirm">Yes, Delete</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Success Toast -->
+    <div id="success-toast" class="success-toast">
         <span>✓</span>
-
-        <p data-i18n="spendingAdded">
-            Spending added successfully!
-        </p>
-
+        <p data-i18n="spendingAdded">Spending added successfully!</p>
     </div>
 
 
-    <!-- =========================
-         Theme Lamp
-    ========================= -->
-
+    <!-- Theme Lamp -->
     <div class="theme-lamp">
-
         <div class="lamp">
-
             <div class="lamp-shade"></div>
-
             <div class="lamp-light"></div>
-
         </div>
 
-
-        <div
-            class="lamp-cord"
-            id="lamp-cord"
-        >
-
+        <div class="lamp-cord" id="lamp-cord">
             <span class="cord-handle"></span>
-
         </div>
-
     </div>
 
 
-    <!-- JavaScript -->
     <script src="../js/theme.js"></script>
     <script src="../js/language.js"></script>
     <script src="../js/daily.js"></script>
 
 </body>
-
 </html>
