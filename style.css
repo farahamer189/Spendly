@@ -857,3 +857,121 @@ body.night-mode .cord-handle {
     }
 
 }
+
+
+/* =========================
+   Unified Spendly Colors
+========================= */
+
+:root {
+    --page-bg: #f8f7f4;
+    --card-bg: #fffefa;
+    --main-text: #2f3437;
+    --muted-text: #898b80;
+    --accent: #85896c;
+    --border-color: #e7e5da;
+}
+
+/* Main background and header */
+body {
+    background: var(--page-bg);
+    color: var(--main-text);
+}
+
+header {
+    background: var(--page-bg);
+}
+
+/* Brand and navigation */
+.logo {
+    color: var(--accent);
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+/* Hero */
+.hero {
+    background: radial-gradient(
+        circle at top,
+        #fffefa 0%,
+        #f8f7f4 55%,
+        #eeeee4 100%
+    );
+}
+
+.hero-label,
+.section-label,
+.features-label {
+    color: var(--accent);
+}
+
+/* Main button — same as Login */
+.hero button {
+    background: var(--accent);
+    color: #fffefa;
+}
+
+.hero button:hover {
+    background: #74785d;
+    box-shadow: 0 10px 24px rgba(133, 137, 108, 0.22);
+}
+
+/* Cards */
+.step-card,
+.feature-card {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.step-icon,
+.feature-icon {
+    background: #eeeee4;
+}
+
+/* Footer */
+footer {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.footer-bottom {
+    border-color: var(--border-color);
+}
+
+/* Dark Mode */
+body.night-mode {
+    background: #171923;
+    color: #eee8dc;
+}
+
+body.night-mode header,
+body.night-mode footer,
+body.night-mode .step-card,
+body.night-mode .feature-card {
+    background: #242630;
+    border-color: #3a3d47;
+}
+
+body.night-mode .logo,
+body.night-mode .hero-label,
+body.night-mode .section-label,
+body.night-mode .features-label,
+body.night-mode nav a:hover {
+    color: #f5cfa3;
+}
+
+body.night-mode .hero button {
+    background: #f5cfa3;
+    color: #242630;
+}
+
+body.night-mode .hero button:hover {
+    background: #e9bd8b;
+}
+
+body.night-mode .step-icon,
+body.night-mode .feature-icon {
+    background: #30333d;
+}

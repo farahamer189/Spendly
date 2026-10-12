@@ -1,63 +1,76 @@
-/* =========================
-   Spendly Theme
-========================= */
-
-const themeLamp = document.querySelector(".theme-lamp");
-const lampCord = document.querySelector("#lamp-cord");
-
 
 /* =========================
-   Load Saved Theme
+   Spendly Theme Manager
 ========================= */
 
-const savedTheme =
-    localStorage.getItem("spendlyTheme");
+(() => {
+    const THEME_KEY = "spendlyTheme";
 
-if (savedTheme === "night") {
-    document.body.classList.add("night-mode");
-}
+    // Supports both Login and Signup markup
+    const lamp = document.querySelector("#theme-lamp, .theme-lamp");
+    const cord = document.querySelector("#lamp-cord");
 
+    let pullTimer;
 
-/* =========================
-   Pull Cord
-========================= */
+    function getSavedTheme() {
+        try {
+            return localStorage.getItem(THEME_KEY) || "light";
+        } catch (error) {
+            return "light";
+        }
+    }
 
-if (lampCord) {
+    function applyTheme(theme) {
+        const isDark = theme === "dark";
 
-    let isPulling = false;
+        document.body.classList.toggle("night-mode", isDark);
+        document.documentElement.style.colorScheme =
+            isDark ? "dark" : "light";
 
-    lampCord.addEventListener("mousedown", function () {
+        if (cord) {
+            const label = isDark
+                ? "Switch to light mode"
+                : "Switch to dark mode";
 
-        isPulling = true;
+            cord.setAttribute("aria-label", label);
+            cord.setAttribute("title", label);
+        }
 
-        themeLamp.classList.add("pulling");
-    });
+        document.dispatchEvent(
+            new CustomEvent("spendlyThemeChanged", {
+                detail: { theme }
+            })
+        );
+    }
 
+    function saveTheme(theme) {
+        try {
+            localStorage.setItem(THEME_KEY, theme);
+        } catch (error) {
+            // Theme remains active for the current page.
+        }
+    }
 
-    document.addEventListener("mouseup", function () {
+    function toggleTheme() {
+        const isDark = document.body.classList.contains("night-mode");
+        const nextTheme = isDark ? "light" : "dark";
 
-        if (!isPulling) return;
+        if (lamp) {
+            lamp.classList.add("pulling");
+            clearTimeout(pullTimer);
 
-        isPulling = false;
+            pullTimer = setTimeout(() => {
+                lamp.classList.remove("pulling");
+            }, 350);
+        }
 
-        themeLamp.classList.remove("pulling");
+        applyTheme(nextTheme);
+        saveTheme(nextTheme);
+    }
 
-        toggleTheme();
-    });
-}
+    applyTheme(getSavedTheme());
 
-
-/* =========================
-   Toggle Theme
-========================= */
-
-function toggleTheme() {
-
-    const isNight =
-        document.body.classList.toggle("night-mode");
-
-    localStorage.setItem(
-        "spendlyTheme",
-        isNight ? "night" : "light"
-    );
-}
+    if (cord) {
+        cord.addEventListener("click", toggleTheme);
+    }
+})();
