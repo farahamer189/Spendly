@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Monthly Report | Spendly</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Original+Surfer&family=Nunito:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/report.css">
+</head>
+
+<body>
+
+    <main class="report-container">
+
+        <!-- Header -->
+        <header class="report-header">
+            <div>
+                <p class="eyebrow">YOUR FINANCIAL OVERVIEW</p>
+                <h1>Monthly Report 📊</h1>
+                <p class="subtitle">
+                    Understand your spending habits, one month at a time.
+                </p>
+            </div>
+
+            <a class="back-link" href="daily.html">
+                ← Back to My Money
+            </a>
+        </header>
+
+        <!-- Month Selector -->
+        <section class="month-toolbar">
+            <button type="button"
+                    id="previous-month"
+                    class="month-arrow"
+                    aria-label="Previous month">
+                ‹
+            </button>
+
+            <div class="month-label-wrap">
+                <p class="eyebrow">MONTHLY OVERVIEW</p>
+                <h2 id="current-month">Loading month...</h2>
+            </div>
+
+            <button type="button"
+                    id="next-month"
+                    class="month-arrow"
+                    aria-label="Next month">
+                ›
+            </button>
+        </section>
+
+        <!-- Monthly Summary -->
+        <section class="summary-card">
+            <div class="summary-top">
+                <div>
+                    <p class="summary-label">Total Spent</p>
+                    <h2 id="total-spent">0 EGP</h2>
+                </div>
+
+                <div class="summary-icon">💸</div>
+            </div>
+
+            <div class="budget-row">
+                <span id="budget-label">Monthly budget: Not set</span>
+                <strong id="budget-percent">—</strong>
+            </div>
+
+            <div class="progress-track">
+                <div id="budget-progress" class="progress-fill"></div>
+            </div>
+
+            <p id="budget-status" class="budget-status">
+                Add your monthly budget in My Money to compare it with your spending.
+            </p>
+        </section>
+
+        <!-- Quick Statistics -->
+        <section class="stat-grid">
+
+            <article class="stat-card">
+                <span class="stat-icon">🧾</span>
+                <p>Transactions</p>
+                <h3 id="transaction-count">0</h3>
+            </article>
+
+            <article class="stat-card">
+                <span class="stat-icon">📅</span>
+                <p>Daily average</p>
+                <h3 id="daily-average">0 EGP</h3>
+            </article>
+
+            <article class="stat-card">
+                <span class="stat-icon">✨</span>
+                <p>Top category</p>
+                <h3 id="top-category">—</h3>
+            </article>
+
+        </section>
+
+        <!-- Category Breakdown -->
+        <section class="report-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">WHERE DID IT GO?</p>
+                    <h2>Spending by Category 🧾</h2>
+                </div>
+
+                <p class="section-note">
+                    Select a category to see its transactions.
+                </p>
+            </div>
+
+            <div id="category-breakdown" class="category-breakdown"></div>
+
+            <div id="category-details"
+                 class="category-details"
+                 hidden>
+            </div>
+
+        </section>
+
+        <!-- Weekly Timeline -->
+        <section class="report-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">WHEN DID YOU SPEND IT?</p>
+                    <h2>Your Monthly Timeline 📅</h2>
+                </div>
+
+                <p class="section-note">
+                    Open a week, then expand a day to see each transaction.
+                </p>
+            </div>
+
+            <div id="weekly-breakdown" class="weekly-breakdown"></div>
+
+        </section>
+
+        <!-- Insights -->
+        <section class="report-section insights-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">A LITTLE MONEY CHECK-IN</p>
+                    <h2>Quick Insights 💡</h2>
+                </div>
+            </div>
+
+            <div id="quick-insights" class="insights-grid"></div>
+
+        </section>
+
+        <!-- Empty State -->
+        <section id="empty-state" class="empty-state" hidden>
+            <div class="empty-illustration">🌱</div>
+
+            <h2>No spending recorded for this month yet</h2>
+
+            <p>
+                Add your spending from My Money and it will appear here automatically.
+            </p>
+
+            <a href="daily.html" class="primary-link">
+                Go to My Money
+            </a>
+        </section>
+
+        <p class="report-footnote">
+            This report uses saved spending records.
+            A daily budget reservation is not counted as an expense.
+        </p>
+
+    </main>
+
+    <script src="../js/report.js"></script>
+
+</body>
+</html>
