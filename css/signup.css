@@ -691,3 +691,9 @@ body.night-mode .success-loader::after {
         font-size: 17px;
     }
 }
+
+/* Hide the browser's extra password reveal button */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}

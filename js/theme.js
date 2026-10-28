@@ -1,16 +1,9 @@
-
 /* =========================
    Spendly Theme Manager
 ========================= */
 
 (() => {
     const THEME_KEY = "spendlyTheme";
-
-    // Supports both Login and Signup markup
-    const lamp = document.querySelector("#theme-lamp, .theme-lamp");
-    const cord = document.querySelector("#lamp-cord");
-
-    let pullTimer;
 
     function getSavedTheme() {
         try {
@@ -20,46 +13,33 @@
         }
     }
 
-    function applyTheme(theme) {
-        const isDark = theme === "dark";
-
-        document.body.classList.toggle("night-mode", isDark);
-        document.documentElement.style.colorScheme =
-            isDark ? "dark" : "light";
-
-        if (cord) {
-            const label = isDark
-                ? "Switch to light mode"
-                : "Switch to dark mode";
-
-            cord.setAttribute("aria-label", label);
-            cord.setAttribute("title", label);
-        }
-
-        document.dispatchEvent(
-            new CustomEvent("spendlyThemeChanged", {
-                detail: { theme }
-            })
-        );
-    }
-
     function saveTheme(theme) {
         try {
             localStorage.setItem(THEME_KEY, theme);
         } catch (error) {
-            // Theme remains active for the current page.
+            // Keep current selection
         }
+    }
+
+    function applyTheme(theme) {
+        const isDark = theme === "dark";
+
+        document.body.classList.toggle("night-mode", isDark);
+        document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+
+        console.log("Applied Theme:", theme, "| body class:", document.body.className);
     }
 
     function toggleTheme() {
         const isDark = document.body.classList.contains("night-mode");
         const nextTheme = isDark ? "light" : "dark";
 
+        console.log("Toggling theme from", isDark ? "dark" : "light", "to", nextTheme);
+
+        const lamp = document.querySelector(".theme-lamp");
         if (lamp) {
             lamp.classList.add("pulling");
-            clearTimeout(pullTimer);
-
-            pullTimer = setTimeout(() => {
+            setTimeout(() => {
                 lamp.classList.remove("pulling");
             }, 350);
         }
@@ -68,9 +48,17 @@
         saveTheme(nextTheme);
     }
 
-    applyTheme(getSavedTheme());
+    // Apply saved theme immediately
+    document.addEventListener("DOMContentLoaded", () => {
+        applyTheme(getSavedTheme());
+    });
 
-    if (cord) {
-        cord.addEventListener("click", toggleTheme);
-    }
+    // Universal Click Listener
+    document.addEventListener("click", (event) => {
+        const lamp = event.target.closest(".theme-lamp, #lamp-cord, .lamp-cord, .cord-handle");
+        if (lamp) {
+            console.log("Lamp element clicked!", event.target);
+            toggleTheme();
+        }
+    });
 })();

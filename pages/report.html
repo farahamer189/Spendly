@@ -1,67 +1,112 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
 
     <title>Monthly Report | Spendly</title>
+     <link rel="icon" href="../assets/Spendly Wallet Logo.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Original+Surfer&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Original+Surfer&family=Nunito:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
+    <link rel="stylesheet" href="../css/theme.css">
     <link rel="stylesheet" href="../css/report.css">
 </head>
 
-<body>
+<body class="report-page">
+
+    <!-- Theme Lamp -->
+    <div class="theme-lamp" id="theme-lamp">
+        <div class="lamp">
+            <div class="lamp-shade"></div>
+            <div class="lamp-light"></div>
+        </div>
+
+        <button
+            type="button"
+            class="lamp-cord"
+            id="lamp-cord"
+            aria-label="Toggle light and dark mode"
+            title="Toggle theme"
+        >
+            <span class="cord-handle"></span>
+        </button>
+    </div>
+
+    <!-- Language Switch -->
+    <button
+        type="button"
+        class="language-button"
+        id="language-toggle"
+        aria-label="Change language"
+    >
+        🇪🇬 AR
+    </button>
 
     <main class="report-container">
 
-        <!-- Header -->
+        <!-- Report Header -->
         <header class="report-header">
             <div>
-                <p class="eyebrow">YOUR FINANCIAL OVERVIEW</p>
-                <h1>Monthly Report 📊</h1>
-                <p class="subtitle">
+                <p class="eyebrow" data-i18n="reportEyebrow">
+                    YOUR FINANCIAL OVERVIEW
+                </p>
+
+                <h1 data-i18n="reportTitle">
+                    Monthly Report 📊
+                </h1>
+
+                <p class="subtitle" data-i18n="reportSubtitle">
                     Understand your spending habits, one month at a time.
                 </p>
             </div>
 
-            <a class="back-link" href="daily.html">
+            <a class="back-link" href="daily.html" data-i18n="backToMoney">
                 ← Back to My Money
             </a>
         </header>
 
-        <!-- Month Selector -->
+        <!-- Month Navigation -->
         <section class="month-toolbar">
-            <button type="button"
-                    id="previous-month"
-                    class="month-arrow"
-                    aria-label="Previous month">
-                ‹
-            </button>
+            <button
+                type="button"
+                id="previous-month"
+                class="month-arrow"
+                aria-label="Previous month"
+                data-i18n-aria="previousMonth"
+                data-i18n-title="previousMonth"
+            >‹</button>
 
             <div class="month-label-wrap">
-                <p class="eyebrow">MONTHLY OVERVIEW</p>
+                <p class="eyebrow" data-i18n="monthlyOverview">
+                    MONTHLY OVERVIEW
+                </p>
+
                 <h2 id="current-month">Loading month...</h2>
             </div>
 
-            <button type="button"
-                    id="next-month"
-                    class="month-arrow"
-                    aria-label="Next month">
-                ›
-            </button>
+            <button
+                type="button"
+                id="next-month"
+                class="month-arrow"
+                aria-label="Next month"
+                data-i18n-aria="nextMonth"
+                data-i18n-title="nextMonth"
+            >›</button>
         </section>
 
-        <!-- Monthly Summary -->
+        <!-- Spending Summary -->
         <section class="summary-card">
             <div class="summary-top">
                 <div>
-                    <p class="summary-label">Total Spent</p>
+                    <p class="summary-label" data-i18n="totalSpent">
+                        Total Spent
+                    </p>
+
                     <h2 id="total-spent">0 EGP</h2>
                 </div>
 
@@ -77,29 +122,31 @@
                 <div id="budget-progress" class="progress-fill"></div>
             </div>
 
-            <p id="budget-status" class="budget-status">
-                Add your monthly budget in My Money to compare it with your spending.
-            </p>
+            <p id="budget-status" class="budget-status neutral"></p>
         </section>
 
-        <!-- Quick Statistics -->
+        <!-- Statistics -->
         <section class="stat-grid">
 
+            <!-- Transactions -->
             <article class="stat-card">
                 <span class="stat-icon">🧾</span>
-                <p>Transactions</p>
+
+                <p data-i18n="transactions">
+                    Transactions
+                </p>
+
                 <h3 id="transaction-count">0</h3>
             </article>
 
-            <article class="stat-card">
-                <span class="stat-icon">📅</span>
-                <p>Daily average</p>
-                <h3 id="daily-average">0 EGP</h3>
-            </article>
-
+            <!-- Top Category -->
             <article class="stat-card">
                 <span class="stat-icon">✨</span>
-                <p>Top category</p>
+
+                <p data-i18n="topCategory">
+                    Top category
+                </p>
+
                 <h3 id="top-category">—</h3>
             </article>
 
@@ -107,81 +154,113 @@
 
         <!-- Category Breakdown -->
         <section class="report-section">
-
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow">WHERE DID IT GO?</p>
-                    <h2>Spending by Category 🧾</h2>
+                    <p class="eyebrow" data-i18n="whereSpent">
+                        WHERE DID IT GO?
+                    </p>
+
+                    <h2 data-i18n="categoryTitle">
+                        Spending by Category 🧾
+                    </h2>
                 </div>
 
-                <p class="section-note">
+                <p class="section-note" data-i18n="categoryNote">
                     Select a category to see its transactions.
                 </p>
             </div>
 
-            <div id="category-breakdown" class="category-breakdown"></div>
+            <div
+                id="category-breakdown"
+                class="category-breakdown"
+            ></div>
 
-            <div id="category-details"
-                 class="category-details"
-                 hidden>
-            </div>
-
+            <div
+                id="category-details"
+                class="category-details"
+                hidden
+            ></div>
         </section>
 
-        <!-- Weekly Timeline -->
+        <!-- Monthly Timeline / Weekly Breakdown -->
         <section class="report-section">
-
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow">WHEN DID YOU SPEND IT?</p>
-                    <h2>Your Monthly Timeline 📅</h2>
+                    <p class="eyebrow" data-i18n="whenSpent">
+                        WHEN DID YOU SPEND IT?
+                    </p>
+
+                    <h2 data-i18n="timelineTitle">
+                        Your Monthly Timeline 📅
+                    </h2>
                 </div>
 
-                <p class="section-note">
+                <p class="section-note" data-i18n="timelineNote">
                     Open a week, then expand a day to see each transaction.
                 </p>
             </div>
 
-            <div id="weekly-breakdown" class="weekly-breakdown"></div>
-
+            <div
+                id="weekly-breakdown"
+                class="weekly-breakdown"
+            ></div>
         </section>
 
-        <!-- Insights -->
+        <!-- Quick Insights -->
         <section class="report-section insights-section">
-
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow">A LITTLE MONEY CHECK-IN</p>
-                    <h2>Quick Insights 💡</h2>
+                    <p class="eyebrow" data-i18n="moneyCheckin">
+                        A LITTLE MONEY CHECK-IN
+                    </p>
+
+                    <h2 data-i18n="insightsTitle">
+                        Quick Insights 💡
+                    </h2>
                 </div>
             </div>
 
-            <div id="quick-insights" class="insights-grid"></div>
-
+            <div
+                id="quick-insights"
+                class="insights-grid"
+            ></div>
         </section>
 
         <!-- Empty State -->
-        <section id="empty-state" class="empty-state" hidden>
+        <section
+            id="empty-state"
+            class="empty-state"
+            hidden
+        >
             <div class="empty-illustration">🌱</div>
 
-            <h2>No spending recorded for this month yet</h2>
+            <h2 data-i18n="emptyTitle">
+                No spending recorded for this month yet
+            </h2>
 
-            <p>
+            <p data-i18n="emptyDescription">
                 Add your spending from My Money and it will appear here automatically.
             </p>
 
-            <a href="daily.html" class="primary-link">
+            <a
+                href="daily.html"
+                class="primary-link"
+                data-i18n="goToMoney"
+            >
                 Go to My Money
             </a>
         </section>
 
-        <p class="report-footnote">
-            This report uses saved spending records.
-            A daily budget reservation is not counted as an expense.
+        <!-- Report Note -->
+        <p class="report-footnote" data-i18n="reportFootnote">
+            This report uses saved spending records. A daily budget reservation is not counted as an expense.
         </p>
 
     </main>
 
+    <!-- JavaScript -->
+    <script src="../js/theme.js"></script>
+    <script src="../js/language.js"></script>
     <script src="../js/report.js"></script>
 
 </body>

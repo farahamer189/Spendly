@@ -1,4 +1,3 @@
-
 /* =========================
    Spendly - My Money
 ========================= */
@@ -167,11 +166,15 @@ try {
     if (Array.isArray(savedSpending)) {
         allSpending = savedSpending.map(function (spending, index) {
             const date = new Date(spending.date);
+
             const validDate = Number.isNaN(date.getTime())
                 ? new Date()
                 : date;
 
-            const time = new Date(spending.time || spending.date || validDate);
+            const time = new Date(
+                spending.time || spending.date || validDate
+            );
+
             const validTime = Number.isNaN(time.getTime())
                 ? validDate
                 : time;
@@ -194,7 +197,10 @@ try {
 
 /* Save Spending Records */
 function saveSpendingRecords() {
-    localStorage.setItem("spendlySpending", JSON.stringify(allSpending));
+    localStorage.setItem(
+        "spendlySpending",
+        JSON.stringify(allSpending)
+    );
 }
 
 /* Only Today's Spending */
@@ -881,36 +887,66 @@ function updateDailySummary() {
             : formatMoney(dailyBudget - totalSpentToday);
     }
 
+    /* Include any approved carryover from the previous month. */
+    let carriedIntoThisMonth = 0;
+
+    try {
+        const savedCarryovers = JSON.parse(
+            localStorage.getItem("spendlyBudgetCarryovers") || "{}"
+        );
+
+        const thisMonthKey = getCurrentMonthKey();
+
+        const previousMonthDate = new Date();
+        previousMonthDate.setDate(1);
+        previousMonthDate.setMonth(previousMonthDate.getMonth() - 1);
+
+        const previousMonthKey = getMonthKey(previousMonthDate);
+        const previousDecision = savedCarryovers && savedCarryovers[previousMonthKey];
+
+        if (
+            previousDecision &&
+            previousDecision.decision === "yes" &&
+            previousDecision.targetMonth === thisMonthKey
+        ) {
+            const amount = Number(previousDecision.amount);
+
+            if (Number.isFinite(amount) && amount > 0) {
+                carriedIntoThisMonth = amount;
+            }
+        }
+    } catch (error) {
+        console.error("Could not load monthly budget carryover.", error);
+    }
+
+    const effectiveMonthlyBudget = monthlyBudget === null
+        ? (carriedIntoThisMonth > 0 ? carriedIntoThisMonth : null)
+        : monthlyBudget + carriedIntoThisMonth;
+
     /* Monthly Budget */
     if (monthlyBudgetElement) {
-        monthlyBudgetElement.textContent = monthlyBudget === null
+        monthlyBudgetElement.textContent = effectiveMonthlyBudget === null
             ? getText("noMonthlyBudget")
-            : formatMoney(monthlyBudget);
+            : formatMoney(effectiveMonthlyBudget);
     }
 
     /*
-     * Monthly balance calculation:
-     *
-     * Monthly budget
-     * - all actual spending this month
-     * - full daily budget reserved for today
-     *
-     * Example:
-     * Monthly budget: 30,000 EGP
-     * Daily budget:    2,000 EGP
-     * Spent today:     1,700 EGP
-     *
-     * Monthly remaining: 28,000 EGP
-     *
-     * When tomorrow starts, today's unused 300 EGP is released.
+     * Monthly remaining:
+     * If no daily budget is set, deduct all recorded expenses.
+     * If a daily budget is set, count the reservation once and do not
+     * deduct today's actual expenses a second time.
      */
 
     const reservedForToday = dailyBudget === null ? 0 : dailyBudget;
+    const spentBeforeToday = totalSpentThisMonth - totalSpentToday;
 
-    const monthlyRemaining =
-        monthlyBudget === null
-            ? null
-            : monthlyBudget - totalSpentThisMonth - reservedForToday;
+    const amountAccountedFor = dailyBudget === null
+        ? totalSpentThisMonth
+        : spentBeforeToday + reservedForToday;
+
+    const monthlyRemaining = effectiveMonthlyBudget === null
+        ? null
+        : effectiveMonthlyBudget - amountAccountedFor;
 
     if (monthlyRemainingElement) {
         monthlyRemainingElement.textContent = monthlyRemaining === null
@@ -943,6 +979,9 @@ function updateDailySummary() {
             }
         }
     }
+
+    lastLoadedDateKey = currentDate;
+    lastLoadedMonthKey = currentMonth;
 }
 
 /* Track Last Loaded Date and Month */
@@ -969,6 +1008,20 @@ window.addEventListener("languageChanged", function () {
             : getText("deleteDailyBudgetMessage");
     }
 });
+
+/* =========================
+   Logout
+========================= */
+
+const logoutButton = document.getElementById("logout-btn");
+
+if (logoutButton) {
+    logoutButton.addEventListener("click", function () {
+        localStorage.removeItem("spendlyLoggedIn");
+
+        window.location.href = "login.html";
+    });
+}
 
 /* =========================
    Initial Display

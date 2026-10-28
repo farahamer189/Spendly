@@ -218,7 +218,7 @@ if (loginForm) {
         }
 
         setTimeout(() => {
-            window.location.href = "dashboard.html";
+            window.location.href = "daily.html";
         }, 900);
     });
 }

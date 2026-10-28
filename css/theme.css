@@ -196,3 +196,26 @@ body.night-mode .cord-handle {
         right: 14px;
     }
 }
+
+
+/* Keep both existing and dynamically created language buttons consistent */
+#language-toggle,
+#language-toggle.language-toggle-dynamic {
+    font-family: "Nunito", sans-serif;
+}
+
+#language-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1002;
+}
+
+
+/* Ensure lamp cord is clickable */
+.theme-lamp,
+.lamp-cord,
+.cord-handle {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
